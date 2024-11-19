@@ -4436,7 +4436,7 @@ export default {
             showClose: true,
             duration: this.$store.getters.getMessagesDuration,
             type: "success",
-            message: this.$t("Code copied!"),
+            message: this.$t("Copied!"),
           });
         })
         .catch((err) => {
