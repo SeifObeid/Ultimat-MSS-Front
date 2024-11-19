@@ -1,0 +1,92 @@
+// Here you can add other styles
+
+body{
+    background: #EEEFF0;
+}
+.sidebar{
+    background: $color1;
+    .nav-link.active{
+        background: $color1;
+        .nav-icon{
+            color: $color3;
+        }
+    }
+    .nav-link:hover {
+        color: #fff;
+        background: $color3;
+    }
+}
+.sidebar .nav-dropdown .nav-dropdown-items .nav-link{
+    padding-left: 25px;
+}
+.dialog-footer{
+    button{
+        margin-left: .5rem;
+    }
+}
+.csubmit{
+    background-color: $color1;
+    color:white;
+}
+.csubmit:hover{
+    background-color: $color3;
+    color:white;
+}
+.required{
+    color: $colorError;
+}
+.form-group.has-error{
+    label{
+        color: $colorError;
+    }
+    .help-block{
+        color: $colorError;
+    }
+    .form-control,.el-input__inner,.input-group-btn{
+        border-color: $colorError;
+    box-shadow: none;
+    }
+} 
+// for overridings
+body{
+    .el-date-editor.el-input,.el-date-editor.el-input__inner,.el-select,.el-autocomplete{
+        width: 100%;
+        height: calc(2.0625rem + 2px);
+    }
+}
+
+// @media (min-width: 768px)
+// <style>…</style>
+.form-horizontal{
+    .col-form-label {
+        padding-top: 7px;
+        margin-bottom: 0px;
+        text-align: right;
+    }
+} 
+a.text-danger{
+        cursor: pointer;
+    }
+
+table{
+    td.action-column{
+        text-align: center;
+        a{
+            margin: 0 2px;
+        }
+    }
+} 
+.el-input.input-custom,
+.el-select.input-custom{
+ input[type="text"] {
+    height: 35px!important;
+  }
+}
+.el-table--mini td, .el-table--mini th{
+    padding: 1px 0 !important;
+  }
+  .parent-card {
+    >.card-accent-primary {
+        border: 2px solid #979697!important;
+    }
+  }
