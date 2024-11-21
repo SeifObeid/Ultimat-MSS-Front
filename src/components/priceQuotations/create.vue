@@ -2,108 +2,125 @@
   <div>
     <div class="row" v-loading.fullscreen.lock="fullscreenLoading">
       <div class="col-md-12">
-        <router-link :to="{ name: 'PriceQuotationsList'}" class="btn btn-secondary">
+        <router-link
+          :to="{ name: 'PriceQuotationsList' }"
+          class="btn btn-secondary"
+        >
           <i class="fa fa-arrow-left"></i>
-          {{$t("BackToList")}}
+          {{ $t("BackToList") }}
         </router-link>
       </div>
     </div>
     <br />
     <b-card class="card card-accent-primary" no-body>
       <div slot="header">
-        <span>{{ $t("QuoteInformation")}}</span>
+        <span>{{ $t("QuoteInformation") }}</span>
       </div>
       <b-collapse id="collapse1" visible>
         <b-card-body>
-           <div class="row">
-             <div class="col-md-6">
-                   <div>
-                  <div
-                    class="form-group"
-                    :class="{'has-error':errors.has('priceQouteValidation.calculationSheet')}">
-                    <label class="col-form-label">{{$t("QuotationReference")}}</label>
-                    <label class="required"> *</label>
-                    <el-select
-                      v-if="!CalSheetId"
-                      v-model="formdata.calculationSheetId"
-                      name="calculationSheet"
-                      clearable
-                      filterable
-                      v-validate="'required'"
-                      data-vv-scope="priceQouteValidation"
-                      :placeholder="$t('Select')"
-                      @change="selectCalculationSheet()"
-                    >
-                      <el-option
-                        v-for="option in calculationSheetList"
-                        v-bind:value="option.id"
-                        v-bind:label="option.tenderNumber"
-                        v-bind:key="option.id"
-                      ></el-option>
-                    </el-select>
-
-                    <input
-                      v-if="CalSheetId && !qouteID"
-                      type="text"
-                      name="tenderNumber"
-                      class="form-control"
-                      v-model="formdata.tenderNumber"
-                      v-validate="'required'"
-                      disabled
-                      autocomplete="off"
-                    />
-
-                    <div
-                      class="help-block"
-                      v-if="errors.has('priceQouteValidation.calculationSheet')"
-                    >
-                      <label
-                        class="mt-1"
-                      >{{ errors.first('priceQouteValidation.calculationSheet') }}</label>
-                    </div>
-                  </div>
-                </div>
-               </div>
-               <div class="col-md-6">
-                   <div >
-                  <div
-                    class="form-group"
-                    :class="{'has-error':errors.has('priceQouteValidation.quoteNumber')}"
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <div
+                  class="form-group"
+                  :class="{
+                    'has-error': errors.has(
+                      'priceQouteValidation.calculationSheet'
+                    ),
+                  }"
+                >
+                  <label class="col-form-label">{{
+                    $t("QuotationReference")
+                  }}</label>
+                  <label class="required"> *</label>
+                  <el-select
+                    v-if="!CalSheetId"
+                    v-model="formdata.calculationSheetId"
+                    name="calculationSheet"
+                    clearable
+                    filterable
+                    v-validate="'required'"
+                    data-vv-scope="priceQouteValidation"
+                    :placeholder="$t('Select')"
+                    @change="selectCalculationSheet()"
                   >
-                    <label class="col-form-label">{{$t("quoteNumber")}}</label>
-                    <input
-                      type="text"
-                      name="quoteNumber"
-                      class="form-control"
-                      v-model="formdata.quoteNumber"
-                      v-validate="'required'"
-                      disabled
-                      autocomplete="off"
-                    />
-                    <div
-                      class="help-block"
-                      v-if="errors.has('priceQouteValidation.quoteNumber')"
-                    >
-                      <label
-                        class="mt-1"
-                      >{{ errors.first('priceQouteValidation.quoteNumber') }}</label>
-                    </div>
+                    <el-option
+                      v-for="option in calculationSheetList"
+                      v-bind:value="option.id"
+                      v-bind:label="option.tenderNumber"
+                      v-bind:key="option.id"
+                    ></el-option>
+                  </el-select>
+
+                  <input
+                    v-if="CalSheetId && !qouteID"
+                    type="text"
+                    name="tenderNumber"
+                    class="form-control"
+                    v-model="formdata.tenderNumber"
+                    v-validate="'required'"
+                    disabled
+                    autocomplete="off"
+                  />
+
+                  <div
+                    class="help-block"
+                    v-if="errors.has('priceQouteValidation.calculationSheet')"
+                  >
+                    <label class="mt-1">{{
+                      errors.first("priceQouteValidation.calculationSheet")
+                    }}</label>
                   </div>
                 </div>
-               </div>
-           </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div>
+                <div
+                  class="form-group"
+                  :class="{
+                    'has-error': errors.has('priceQouteValidation.quoteNumber'),
+                  }"
+                >
+                  <label class="col-form-label">{{ $t("quoteNumber") }}</label>
+                  <input
+                    type="text"
+                    name="quoteNumber"
+                    class="form-control"
+                    v-model="formdata.quoteNumber"
+                    v-validate="'required'"
+                    disabled
+                    autocomplete="off"
+                  />
+                  <div
+                    class="help-block"
+                    v-if="errors.has('priceQouteValidation.quoteNumber')"
+                  >
+                    <label class="mt-1">{{
+                      errors.first("priceQouteValidation.quoteNumber")
+                    }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="row">
             <div class="col-md-6">
               <div class="row">
-              
                 <div class="row col-md-12 pr-0">
                   <div class="col-md-6 pr-0">
                     <div
                       class="form-group"
-                      :class="{'has-error':errors.has('priceQouteValidation.TenderName')}"
+                      :class="{
+                        'has-error': errors.has(
+                          'priceQouteValidation.TenderName'
+                        ),
+                      }"
                     >
-                      <label class="col-form-label">{{$t("TenderName")}}</label>
+                      <label class="col-form-label">{{
+                        $t("TenderName")
+                      }}</label>
                       <input
                         type="text"
                         name="TenderName"
@@ -117,15 +134,23 @@
                       <div
                         class="help-block"
                         v-if="errors.has('priceQouteValidation.TenderName')"
-                      >{{ errors.first('priceQouteValidation.TenderName') }}</div>
+                      >
+                        {{ errors.first("priceQouteValidation.TenderName") }}
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6 pr-0">
                     <div
                       class="form-group"
-                      :class="{'has-error':errors.has('priceQouteValidation.WarrantyTerms')}"
+                      :class="{
+                        'has-error': errors.has(
+                          'priceQouteValidation.WarrantyTerms'
+                        ),
+                      }"
                     >
-                      <label class="col-form-label">{{$t("WarrantyTerms")}}</label>
+                      <label class="col-form-label">{{
+                        $t("WarrantyTerms")
+                      }}</label>
                       <input
                         type="text"
                         name="WarrantyTerms"
@@ -139,7 +164,9 @@
                       <div
                         class="help-block"
                         v-if="errors.has('priceQouteValidation.WarrantyTerms')"
-                      >{{ errors.first('priceQouteValidation.WarrantyTerms') }}</div>
+                      >
+                        {{ errors.first("priceQouteValidation.WarrantyTerms") }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -148,9 +175,15 @@
                   <div class="col-md-12 pr-0">
                     <div
                       class="form-group"
-                      :class="{'has-error':errors.has('priceQouteValidation.PriceValidity')}"
+                      :class="{
+                        'has-error': errors.has(
+                          'priceQouteValidation.PriceValidity'
+                        ),
+                      }"
                     >
-                      <label class="col-form-label">{{$t("PriceValidity")}}</label>
+                      <label class="col-form-label">{{
+                        $t("PriceValidity")
+                      }}</label>
                       <input
                         type="text"
                         name="PriceValidity"
@@ -164,21 +197,25 @@
                       <div
                         class="help-block"
                         v-if="errors.has('priceQouteValidation.PriceValidity')"
-                      >{{ errors.first('priceQouteValidation.PriceValidity') }}</div>
+                      >
+                        {{ errors.first("priceQouteValidation.PriceValidity") }}
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="col-form-label">{{$t("SalesPerson")}}</label>
+                    <label class="col-form-label">{{
+                      $t("SalesPerson")
+                    }}</label>
                     <input
                       type="text"
                       name="SalesPerson"
                       class="form-control"
                       v-model="formdata.salesPerson"
                       autocomplete="off"
-             :maxlength="$store.getters.getMaxLength.length40"
+                      :maxlength="$store.getters.getMaxLength.length40"
                     />
                   </div>
                 </div>
@@ -186,9 +223,11 @@
                 <div class="col-md-12">
                   <div
                     class="form-group"
-                    :class="{'has-error':errors.has('priceQouteValidation.total')}"
+                    :class="{
+                      'has-error': errors.has('priceQouteValidation.total'),
+                    }"
                   >
-                    <label class="col-form-label">{{$t("total")}}</label>
+                    <label class="col-form-label">{{ $t("total") }}</label>
                     <input
                       type="text"
                       name="total"
@@ -202,7 +241,9 @@
                     <div
                       class="help-block"
                       v-if="errors.has('priceQouteValidation.total')"
-                    >{{ errors.first('priceQouteValidation.total') }}</div>
+                    >
+                      {{ errors.first("priceQouteValidation.total") }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -213,9 +254,11 @@
                 <div class="col-md-12">
                   <div
                     class="form-group"
-                    :class="{'has-error':errors.has('priceQouteValidation.subject')}"
+                    :class="{
+                      'has-error': errors.has('priceQouteValidation.subject'),
+                    }"
                   >
-                    <label class="col-form-label">{{$t("subject")}}</label>
+                    <label class="col-form-label">{{ $t("subject") }}</label>
                     <label class="required"> *</label>
                     <input
                       type="text"
@@ -225,12 +268,14 @@
                       v-validate="'required'"
                       data-vv-scope="priceQouteValidation"
                       autocomplete="off"
-                     :maxlength="$store.getters.getMaxLength.length30"
+                      :maxlength="$store.getters.getMaxLength.length30"
                     />
                     <div
                       class="help-block"
                       v-if="errors.has('priceQouteValidation.subject')"
-                    >{{ errors.first('priceQouteValidation.subject') }}</div>
+                    >
+                      {{ errors.first("priceQouteValidation.subject") }}
+                    </div>
                   </div>
                 </div>
 
@@ -238,9 +283,13 @@
                   <div class="col-md-6">
                     <div
                       class="form-group"
-                      :class="{'has-error':errors.has('priceQouteValidation.VatValue')}"
+                      :class="{
+                        'has-error': errors.has(
+                          'priceQouteValidation.VatValue'
+                        ),
+                      }"
                     >
-                      <label class="col-form-label">{{$t("VatValue")}}</label>
+                      <label class="col-form-label">{{ $t("VatValue") }}</label>
                       <input
                         type="text"
                         name="VatValue"
@@ -254,15 +303,23 @@
                       <div
                         class="help-block"
                         v-if="errors.has('priceQouteValidation.VatValue')"
-                      >{{ errors.first('priceQouteValidation.VatValue') }}</div>
+                      >
+                        {{ errors.first("priceQouteValidation.VatValue") }}
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6 pr-0">
                     <div
                       class="form-group"
-                      :class="{'has-error':errors.has('priceQouteValidation.TenderType')}"
+                      :class="{
+                        'has-error': errors.has(
+                          'priceQouteValidation.TenderType'
+                        ),
+                      }"
                     >
-                      <label class="col-form-label">{{$t("TenderType")}}</label>
+                      <label class="col-form-label">{{
+                        $t("TenderType")
+                      }}</label>
                       <input
                         type="text"
                         name="TenderType"
@@ -276,7 +333,9 @@
                       <div
                         class="help-block"
                         v-if="errors.has('priceQouteValidation.TenderType')"
-                      >{{ errors.first('priceQouteValidation.TenderType') }}</div>
+                      >
+                        {{ errors.first("priceQouteValidation.TenderType") }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -285,9 +344,15 @@
                   <div class="col-md-12 pr-0">
                     <div
                       class="form-group"
-                      :class="{'has-error':errors.has('priceQouteValidation.TenderCurrency')}"
+                      :class="{
+                        'has-error': errors.has(
+                          'priceQouteValidation.TenderCurrency'
+                        ),
+                      }"
                     >
-                      <label class="col-form-label">{{$t("TenderCurrency")}}</label>
+                      <label class="col-form-label">{{
+                        $t("TenderCurrency")
+                      }}</label>
                       <input
                         type="text"
                         name="TenderCurrency"
@@ -301,7 +366,11 @@
                       <div
                         class="help-block"
                         v-if="errors.has('priceQouteValidation.TenderCurrency')"
-                      >{{ errors.first('priceQouteValidation.TenderCurrency') }}</div>
+                      >
+                        {{
+                          errors.first("priceQouteValidation.TenderCurrency")
+                        }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -309,9 +378,13 @@
                 <div class="col-md-12">
                   <div
                     class="form-group"
-                    :class="{'has-error':errors.has('priceQouteValidation.QuoteStage')}"
+                    :class="{
+                      'has-error': errors.has(
+                        'priceQouteValidation.QuoteStage'
+                      ),
+                    }"
                   >
-                    <label class="col-form-label">{{$t("QuoteStage")}}</label>
+                    <label class="col-form-label">{{ $t("QuoteStage") }}</label>
                     <el-select
                       v-model="formdata.stageId"
                       :data-vv-as="$t('QuoteStage')"
@@ -333,51 +406,62 @@
                     <div
                       class="help-block"
                       v-if="errors.has('priceQouteValidation.QuoteStage')"
-                    >{{ errors.first('priceQouteValidation.QuoteStage') }}</div>
+                    >
+                      {{ errors.first("priceQouteValidation.QuoteStage") }}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="col-md-6">
-                  <div
-                    class="form-group"
-                    :class="{'has-error':errors.has('priceQouteValidation.calculationSheetType')}"
-                  >
-                    <label class="col-form-label">{{$t("calculationSheetType")}}</label>
-                    <el-select
-                      v-model="formdata.calculationSheetType"
-                      :data-vv-as="$t('calculationSheetType')"
-                      name="calculationSheetType"
-                      :placeholder="$t('Select')"
-                      clearable
-                      filterable
-                      class="full-width"
-                      v-validate="'required'"
-                      disabled
-                      data-vv-scope="priceQouteValidation"
-                    >
-                      <el-option
-                        v-for="option in calculationSheetTypeList"
-                        :value="option.id"
-                        :label="option.name"
-                        :key="option.id"
-                      ></el-option>
-                    </el-select>
-                    <div
-                      class="help-block"
-                      v-if="errors.has('priceQouteValidation.calculationSheetType')"
-                    >{{ errors.first('priceQouteValidation.calculationSheetType') }}</div>
-                  </div>
+              <div
+                class="form-group"
+                :class="{
+                  'has-error': errors.has(
+                    'priceQouteValidation.calculationSheetType'
+                  ),
+                }"
+              >
+                <label class="col-form-label">{{
+                  $t("calculationSheetType")
+                }}</label>
+                <el-select
+                  v-model="formdata.calculationSheetType"
+                  :data-vv-as="$t('calculationSheetType')"
+                  name="calculationSheetType"
+                  :placeholder="$t('Select')"
+                  clearable
+                  filterable
+                  class="full-width"
+                  v-validate="'required'"
+                  disabled
+                  data-vv-scope="priceQouteValidation"
+                >
+                  <el-option
+                    v-for="option in calculationSheetTypeList"
+                    :value="option.id"
+                    :label="option.name"
+                    :key="option.id"
+                  ></el-option>
+                </el-select>
+                <div
+                  class="help-block"
+                  v-if="errors.has('priceQouteValidation.calculationSheetType')"
+                >
+                  {{
+                    errors.first("priceQouteValidation.calculationSheetType")
+                  }}
+                </div>
+              </div>
             </div>
-
           </div>
           <div class="mt-3">
             <b-collapse id="collapse2" visible>
               <b-card-body>
                 <b-row
                   v-if="calculationSheetItem.length > 0"
-                  v-for="(CalcGroup,index) in calculationSheetItem"
+                  v-for="(CalcGroup, index) in calculationSheetItem"
                   :key="CalcGroup.id"
                 >
                   <b-col lg="12" md="12">
@@ -391,18 +475,22 @@
                             :value="CalcGroup.selectedForPriceQuotation"
                             v-model="CalcGroup.selectedForPriceQuotation"
                           />
-                          <label class="col-sm-2 col-form-label">{{$t("Item")}}-{{index+1}}</label>
-                          <label
-                            class="col-form-label"
-                          >{{ $t('DeliveryTerms')}} - {{ CalcGroup.deliveryTerms}}</label>
+                          <label class="col-sm-2 col-form-label"
+                            >{{ $t("Item") }}-{{ index + 1 }}</label
+                          >
+                          <label class="col-form-label"
+                            >{{ $t("DeliveryTerms") }} -
+                            {{ CalcGroup.deliveryTerms }}</label
+                          >
                           <div class="col-md-3 col-sm-3"></div>
-                          <label
-                            class="col-form-label"
-                          >{{ $t('Warranty')}} - {{ CalcGroup.warranty}}</label>
+                          <label class="col-form-label"
+                            >{{ $t("Warranty") }} -
+                            {{ CalcGroup.warranty }}</label
+                          >
                           <div class="col-md-3 col-sm-3"></div>
                         </div>
                       </div>
-                      <b-collapse :id="'mainItem-'+index" visible>
+                      <b-collapse :id="'mainItem-' + index" visible>
                         <b-card-body>
                           <div class="table-responsive-lg table-responsive">
                             <el-table
@@ -412,12 +500,35 @@
                               size="mini"
                               style="width: 100%"
                             >
-                              <el-table-column type="index" :min-width="50"></el-table-column>
-                              <el-table-column prop="code" label="Code" :min-width="30"></el-table-column>
-                              <el-table-column prop="name" label="Name" :min-width="80"></el-table-column>
-                              <el-table-column prop="quantity" label="Quantity" :min-width="50"></el-table-column>
-                              <el-table-column prop="unitPrice" label="Unit price" :min-width="50"></el-table-column>
-                              <el-table-column prop="amount" label="Amount" :min-width="50"></el-table-column>
+                              <el-table-column
+                                type="index"
+                                :min-width="50"
+                              ></el-table-column>
+                              <el-table-column
+                                prop="code"
+                                label="Code"
+                                :min-width="30"
+                              ></el-table-column>
+                              <el-table-column
+                                prop="name"
+                                label="Name"
+                                :min-width="80"
+                              ></el-table-column>
+                              <el-table-column
+                                prop="quantity"
+                                label="Quantity"
+                                :min-width="50"
+                              ></el-table-column>
+                              <el-table-column
+                                prop="unitPrice"
+                                label="Unit price"
+                                :min-width="50"
+                              ></el-table-column>
+                              <el-table-column
+                                prop="amount"
+                                label="Amount"
+                                :min-width="50"
+                              ></el-table-column>
                             </el-table>
                           </div>
                           <br />
@@ -430,14 +541,21 @@
                                 style="margin-top: 12px"
                                 type="checkbox"
                                 :id="index"
-                                :value="CalcGroup.calculationSheetOptionalGroup.selectedForPriceQuotation"
-                                v-model="CalcGroup.calculationSheetOptionalGroup.selectedForPriceQuotation"
+                                :value="
+                                  CalcGroup.calculationSheetOptionalGroup
+                                    .selectedForPriceQuotation
+                                "
+                                v-model="
+                                  CalcGroup.calculationSheetOptionalGroup
+                                    .selectedForPriceQuotation
+                                "
                               />
-                              {{$t("Item")}}-{{index+1}} {{$t('optionalItems')}}
+                              {{ $t("Item") }}-{{ index + 1 }}
+                              {{ $t("optionalItems") }}
                               <div class="card-header-actions">
                                 <b-link
                                   class="card-header-action btn-minimize"
-                                  v-b-toggle="'ItemoptionalGroup-'+index"
+                                  v-b-toggle="'ItemoptionalGroup-' + index"
                                 >
                                   <span class="when-opened">
                                     <i class="icon-arrow-up"></i>
@@ -448,24 +566,49 @@
                                 </b-link>
                               </div>
                             </div>
-                            <b-collapse :id="'ItemoptionalGroup-'+index" visible>
+                            <b-collapse
+                              :id="'ItemoptionalGroup-' + index"
+                              visible
+                            >
                               <div class="table-responsive-lg table-responsive">
                                 <el-table
                                   class="table-sm table-responsive custom-table"
-                                  :data="CalcGroup.calculationSheetOptionalGroup.calculationSheetItem"
+                                  :data="
+                                    CalcGroup.calculationSheetOptionalGroup
+                                      .calculationSheetItem
+                                  "
                                   size="mini"
                                   style="width: 100%"
                                 >
-                                  <el-table-column type="index" :min-width="50"></el-table-column>
-                                  <el-table-column prop="code" label="Code" :min-width="30"></el-table-column>
-                                  <el-table-column prop="name" label="Name" :min-width="80"></el-table-column>
-                                  <el-table-column prop="quantity" label="Quantity" :min-width="50"></el-table-column>
+                                  <el-table-column
+                                    type="index"
+                                    :min-width="50"
+                                  ></el-table-column>
+                                  <el-table-column
+                                    prop="code"
+                                    label="Code"
+                                    :min-width="30"
+                                  ></el-table-column>
+                                  <el-table-column
+                                    prop="name"
+                                    label="Name"
+                                    :min-width="80"
+                                  ></el-table-column>
+                                  <el-table-column
+                                    prop="quantity"
+                                    label="Quantity"
+                                    :min-width="50"
+                                  ></el-table-column>
                                   <el-table-column
                                     prop="unitPrice"
                                     label="Unit price"
                                     :min-width="50"
                                   ></el-table-column>
-                                  <el-table-column prop="amount" label="Amount" :min-width="50"></el-table-column>
+                                  <el-table-column
+                                    prop="amount"
+                                    label="Amount"
+                                    :min-width="50"
+                                  ></el-table-column>
                                   <!-- <el-table-column type="index" width="50"></el-table-column>
                                   <el-table-column sortable prop="name" label="Name" width="180"></el-table-column>
                                   <el-table-column
@@ -568,8 +711,13 @@
                           <b-card
                             class="card card-accent-primary"
                             no-body
-                            v-if="CalcGroup.calculationSheetAlternativeGroup.length > 0"
-                            v-for="(alternativeGroup,alternativeGroupIndex) in CalcGroup.calculationSheetAlternativeGroup"
+                            v-if="
+                              CalcGroup.calculationSheetAlternativeGroup
+                                .length > 0
+                            "
+                            v-for="(
+                              alternativeGroup, alternativeGroupIndex
+                            ) in CalcGroup.calculationSheetAlternativeGroup"
                             :key="alternativeGroup.id"
                           >
                             <div slot="header">
@@ -577,7 +725,11 @@
                                 <div class="card-header-actions">
                                   <b-link
                                     class="card-header-action btn-minimize"
-                                    v-b-toggle="'alternativeGroup-'+index+alternativeGroupIndex"
+                                    v-b-toggle="
+                                      'alternativeGroup-' +
+                                      index +
+                                      alternativeGroupIndex
+                                    "
                                   >
                                     <span class="when-opened">
                                       <i class="icon-arrow-up"></i>
@@ -593,32 +745,57 @@
                                   style="margin-top: 12px"
                                   type="checkbox"
                                   :id="alternativeGroupIndex"
-                                  :value="alternativeGroup.selectedForPriceQuotation"
-                                  v-model="alternativeGroup.selectedForPriceQuotation"
+                                  :value="
+                                    alternativeGroup.selectedForPriceQuotation
+                                  "
+                                  v-model="
+                                    alternativeGroup.selectedForPriceQuotation
+                                  "
                                 />
-                                <label
-                                  class="col-sm-4 col-form-label"
-                                >{{ $t('AlternativeGroup')}} {{ alternativeGroupIndex+1}}</label>
-                                <label
-                                  class="col-form-label"
-                                >{{ $t('name')}} - {{ alternativeGroup.name}}</label>
+                                <label class="col-sm-4 col-form-label"
+                                  >{{ $t("AlternativeGroup") }}
+                                  {{ alternativeGroupIndex + 1 }}</label
+                                >
+                                <label class="col-form-label"
+                                  >{{ $t("name") }} -
+                                  {{ alternativeGroup.name }}</label
+                                >
                               </div>
                             </div>
                             <b-collapse
-                              :id="'alternativeGroup-'+index+alternativeGroupIndex"
+                              :id="
+                                'alternativeGroup-' +
+                                index +
+                                alternativeGroupIndex
+                              "
                               visible
                             >
                               <b-card-body>
-                                <div class="table-responsive-lg table-responsive">
+                                <div
+                                  class="table-responsive-lg table-responsive"
+                                >
                                   <el-table
                                     class="table-sm table-responsive custom-table"
-                                    :data="alternativeGroup.calculationSheetItem"
+                                    :data="
+                                      alternativeGroup.calculationSheetItem
+                                    "
                                     size="mini"
                                     style="width: 100%"
                                   >
-                                    <el-table-column type="index" :min-width="50"></el-table-column>
-                                    <el-table-column prop="code" label="Code" :min-width="30"></el-table-column>
-                                    <el-table-column prop="name" label="Name" :min-width="80"></el-table-column>
+                                    <el-table-column
+                                      type="index"
+                                      :min-width="50"
+                                    ></el-table-column>
+                                    <el-table-column
+                                      prop="code"
+                                      label="Code"
+                                      :min-width="30"
+                                    ></el-table-column>
+                                    <el-table-column
+                                      prop="name"
+                                      label="Name"
+                                      :min-width="80"
+                                    ></el-table-column>
                                     <el-table-column
                                       prop="quantity"
                                       label="Quantity"
@@ -629,7 +806,11 @@
                                       label="Unit price"
                                       :min-width="50"
                                     ></el-table-column>
-                                    <el-table-column prop="amount" label="Amount" :min-width="50"></el-table-column>
+                                    <el-table-column
+                                      prop="amount"
+                                      label="Amount"
+                                      :min-width="50"
+                                    ></el-table-column>
                                     <!-- <el-table-column type="index" width="50"></el-table-column>
                                     <el-table-column sortable prop="name" label="Name" width="180"></el-table-column>
                                     <el-table-column
@@ -732,21 +913,34 @@
                                   <br />
                                   <b-card
                                     class="card card-accent-primary mt-3"
-                                    v-if="alternativeGroup.calculationSheetAlternativeOptionalGroup != null"
+                                    v-if="
+                                      alternativeGroup.calculationSheetAlternativeOptionalGroup !=
+                                      null
+                                    "
                                   >
                                     <div slot="header">
                                       <input
                                         style="margin-top: 12px"
                                         type="checkbox"
-                                        :id="'optionalGroup-'+index"
-                                        :value="alternativeGroup.calculationSheetAlternativeOptionalGroup.selectedForPriceQuotation"
-                                        v-model="alternativeGroup.calculationSheetAlternativeOptionalGroup.selectedForPriceQuotation"
+                                        :id="'optionalGroup-' + index"
+                                        :value="
+                                          alternativeGroup
+                                            .calculationSheetAlternativeOptionalGroup
+                                            .selectedForPriceQuotation
+                                        "
+                                        v-model="
+                                          alternativeGroup
+                                            .calculationSheetAlternativeOptionalGroup
+                                            .selectedForPriceQuotation
+                                        "
                                       />
-                                      {{ $t('AlternativeGroup')}} {{ alternativeGroupIndex+1}} {{$t('optionalItems')}}
+                                      {{ $t("AlternativeGroup") }}
+                                      {{ alternativeGroupIndex + 1 }}
+                                      {{ $t("optionalItems") }}
                                       <div class="card-header-actions">
                                         <b-link
                                           class="card-header-action btn-minimize"
-                                          v-b-toggle="'optionalGroup-'+index"
+                                          v-b-toggle="'optionalGroup-' + index"
                                         >
                                           <span class="when-opened">
                                             <i class="icon-arrow-up"></i>
@@ -757,17 +951,37 @@
                                         </b-link>
                                       </div>
                                     </div>
-                                    <b-collapse :id="'optionalGroup-'+index" visible>
-                                      <div class="table-responsive-lg table-responsive">
+                                    <b-collapse
+                                      :id="'optionalGroup-' + index"
+                                      visible
+                                    >
+                                      <div
+                                        class="table-responsive-lg table-responsive"
+                                      >
                                         <el-table
                                           class="table-sm table-responsive custom-table"
-                                          :data="alternativeGroup.calculationSheetAlternativeOptionalGroup.calculationSheetItem"
+                                          :data="
+                                            alternativeGroup
+                                              .calculationSheetAlternativeOptionalGroup
+                                              .calculationSheetItem
+                                          "
                                           size="mini"
                                           style="width: 100%"
                                         >
-                                          <el-table-column type="index" :min-width="50"></el-table-column>
-                                          <el-table-column prop="code" label="Code" :min-width="30"></el-table-column>
-                                          <el-table-column prop="name" label="Name" :min-width="80"></el-table-column>
+                                          <el-table-column
+                                            type="index"
+                                            :min-width="50"
+                                          ></el-table-column>
+                                          <el-table-column
+                                            prop="code"
+                                            label="Code"
+                                            :min-width="30"
+                                          ></el-table-column>
+                                          <el-table-column
+                                            prop="name"
+                                            label="Name"
+                                            :min-width="80"
+                                          ></el-table-column>
                                           <el-table-column
                                             prop="quantity"
                                             label="Quantity"
@@ -917,7 +1131,7 @@
 
     <b-card class="card card-accent-primary" no-body>
       <div slot="header">
-        {{$t("CustomerAndContactInformation")}}
+        {{ $t("CustomerAndContactInformation") }}
         <div class="card-header-actions">
           <b-link class="card-header-action btn-minimize" v-b-toggle.collapse2>
             <span class="when-opened">
@@ -935,9 +1149,11 @@
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.CustomerName')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.CustomerName'),
+                }"
               >
-                <label class="col-form-label">{{$t("CustomerName")}}</label>
+                <label class="col-form-label">{{ $t("CustomerName") }}</label>
                 <input
                   type="text"
                   name="CustomerName"
@@ -950,67 +1166,102 @@
                 <div
                   class="help-block"
                   v-if="errors.has('priceQouteValidation.CustomerName')"
-                >{{ errors.first('priceQouteValidation.CustomerName') }}</div>
+                >
+                  {{ errors.first("priceQouteValidation.CustomerName") }}
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.CustomerFax')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.CustomerFax'),
+                }"
               >
-                <label class="col-form-label">{{$t("CustomerFax")}}</label>
+                <label class="col-form-label">{{ $t("CustomerFax") }}</label>
                 <input
                   type="text"
                   name="CustomerFax"
                   class="form-control"
                   v-model="formdata.customerFax"
-                  v-validate="{regex:/^(?=(.*\d){0})[a-zA-Z\d]{0,20}$/ }"
+                  v-validate="{ regex: /^(?=(.*\d){0})[a-zA-Z\d]{0,20}$/ }"
                   data-vv-scope="priceQouteValidation"
                   autocomplete="off"
-                 :maxlength="$store.getters.getMaxLength.length20"
+                  :maxlength="$store.getters.getMaxLength.length20"
                 />
-                 <div
+                <div
                   class="help-block"
-                  v-if="errors.has('priceQouteValidation.CustomerFax') && errors.items[0].rule == 'required'"
-                >{{ errors.first('priceQouteValidation.CustomerFax') }}</div>
-                 <div
+                  v-if="
+                    errors.has('priceQouteValidation.CustomerFax') &&
+                    errors.items[0].rule == 'required'
+                  "
+                >
+                  {{ errors.first("priceQouteValidation.CustomerFax") }}
+                </div>
+                <div
                   class="help-block"
-                  v-if="errors.has('priceQouteValidation.CustomerFax') && errors.items[0].rule == 'regex'"
-                >{{ $t('CustomerFaxPlaceHolder') }}</div>
+                  v-if="
+                    errors.has('priceQouteValidation.CustomerFax') &&
+                    errors.items[0].rule == 'regex'
+                  "
+                >
+                  {{ $t("CustomerFaxPlaceHolder") }}
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.CustomerPhone')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.CustomerPhone'),
+                }"
               >
-                <label class="col-form-label">{{$t("CustomerPhone")}}</label>
+                <label class="col-form-label">{{ $t("CustomerPhone") }}</label>
                 <input
                   type="text"
                   name="CustomerPhone"
                   class="form-control"
                   v-model="formdata.customerPhone"
-                  v-validate="{ required: false, regex:/^(?=(.*\d){0})[a-zA-Z\d]{0,20}$/ }"
+                  v-validate="{
+                    required: false,
+                    regex: /^(?=(.*\d){0})[a-zA-Z\d]{0,20}$/,
+                  }"
                   data-vv-scope="priceQouteValidation"
                   autocomplete="off"
-                 :maxlength="$store.getters.getMaxLength.length20"
+                  :maxlength="$store.getters.getMaxLength.length20"
                 />
                 <div
                   class="help-block"
-                  v-if="errors.has('priceQouteValidation.CustomerPhone') && errors.items[0].rule == 'required'"
-                >{{ errors.first('priceQouteValidation.CustomerPhone') }}</div>
+                  v-if="
+                    errors.has('priceQouteValidation.CustomerPhone') &&
+                    errors.items[0].rule == 'required'
+                  "
+                >
+                  {{ errors.first("priceQouteValidation.CustomerPhone") }}
+                </div>
                 <div
                   class="help-block"
-                  v-if="errors.has('priceQouteValidation.CustomerPhone') && errors.items[0].rule == 'regex'"
-                >{{ $t('CustomerPhonePlaceHolder') }}</div>
+                  v-if="
+                    errors.has('priceQouteValidation.CustomerPhone') &&
+                    errors.items[0].rule == 'regex'
+                  "
+                >
+                  {{ $t("CustomerPhonePlaceHolder") }}
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.CustomerAddress')}"
+                :class="{
+                  'has-error': errors.has(
+                    'priceQouteValidation.CustomerAddress'
+                  ),
+                }"
               >
-                <label class="col-form-label">{{$t("CustomerAddress")}}</label>
+                <label class="col-form-label">{{
+                  $t("CustomerAddress")
+                }}</label>
                 <input
                   type="text"
                   name="CustomerAddress"
@@ -1018,12 +1269,14 @@
                   v-model="formdata.customerAddress"
                   data-vv-scope="priceQouteValidation"
                   autocomplete="off"
-                 :maxlength="$store.getters.getMaxLength.length30"
+                  :maxlength="$store.getters.getMaxLength.length30"
                 />
                 <div
                   class="help-block"
                   v-if="errors.has('priceQouteValidation.CustomerAddress')"
-                >{{ errors.first('priceQouteValidation.CustomerAddress') }}</div>
+                >
+                  {{ errors.first("priceQouteValidation.CustomerAddress") }}
+                </div>
               </div>
             </div>
           </div>
@@ -1031,9 +1284,11 @@
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.ContactName')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.ContactName'),
+                }"
               >
-                <label class="col-form-label">{{$t("ContactName")}}</label>
+                <label class="col-form-label">{{ $t("ContactName") }}</label>
                 <input
                   type="text"
                   name="ContactName"
@@ -1042,46 +1297,65 @@
                   v-validate="'required'"
                   data-vv-scope="priceQouteValidation"
                   autocomplete="off"
-                 :maxlength="$store.getters.getMaxLength.length30"
+                  :maxlength="$store.getters.getMaxLength.length30"
                 />
                 <div
                   class="help-block"
                   v-if="errors.has('priceQouteValidation.CustomerName')"
-                >{{ errors.first('priceQouteValidation.CustomerName') }}</div>
+                >
+                  {{ errors.first("priceQouteValidation.CustomerName") }}
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.ContactPhone')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.ContactPhone'),
+                }"
               >
-                <label class="col-form-label">{{$t("ContactPhone")}}</label>
+                <label class="col-form-label">{{ $t("ContactPhone") }}</label>
                 <input
                   type="text"
                   name="ContactPhone"
                   class="form-control"
                   v-model="formdata.contactPhone"
-                  v-validate="{ required: true, regex:/^(?=(.*\d){0})[a-zA-Z\d]{0,20}$/ }"
+                  v-validate="{
+                    required: true,
+                    regex: /^(?=(.*\d){0})[a-zA-Z\d]{0,20}$/,
+                  }"
                   data-vv-scope="priceQouteValidation"
                   autocomplete="off"
-                 :maxlength="$store.getters.getMaxLength.length20"
+                  :maxlength="$store.getters.getMaxLength.length20"
                 />
                 <div
                   class="help-block"
-                  v-if="errors.has('priceQouteValidation.ContactPhone') && errors.items[0].rule == 'required'"
-                >{{ errors.first('priceQouteValidation.ContactPhone') }}</div>
+                  v-if="
+                    errors.has('priceQouteValidation.ContactPhone') &&
+                    errors.items[0].rule == 'required'
+                  "
+                >
+                  {{ errors.first("priceQouteValidation.ContactPhone") }}
+                </div>
                 <div
                   class="help-block"
-                  v-if="errors.has('priceQouteValidation.ContactPhone') && errors.items[0].rule == 'regex'"
-                >{{ $t('CustomerPhonePlaceHolder') }}</div>
+                  v-if="
+                    errors.has('priceQouteValidation.ContactPhone') &&
+                    errors.items[0].rule == 'regex'
+                  "
+                >
+                  {{ $t("CustomerPhonePlaceHolder") }}
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.ContactEmail')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.ContactEmail'),
+                }"
               >
-                <label class="col-form-label">{{$t("ContactEmail")}}</label>
+                <label class="col-form-label">{{ $t("ContactEmail") }}</label>
                 <input
                   type="text"
                   name="ContactEmail"
@@ -1094,15 +1368,19 @@
                 <div
                   class="help-block"
                   v-if="errors.has('priceQouteValidation.ContactEmail')"
-                >{{ errors.first('priceQouteValidation.ContactEmail') }}</div>
+                >
+                  {{ errors.first("priceQouteValidation.ContactEmail") }}
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div
                 class="form-group"
-                :class="{'has-error':errors.has('priceQouteValidation.Date')}"
+                :class="{
+                  'has-error': errors.has('priceQouteValidation.Date'),
+                }"
               >
-                <label class="col-form-label">{{$t("SubmissionDate")}}</label>
+                <label class="col-form-label">{{ $t("SubmissionDate") }}</label>
 
                 <input
                   type="text"
@@ -1117,7 +1395,9 @@
                 <div
                   class="help-block"
                   v-if="errors.has('priceQouteValidation.SubmissionDate')"
-                >{{ errors.first('priceQouteValidation.SubmissionDate') }}</div>
+                >
+                  {{ errors.first("priceQouteValidation.SubmissionDate") }}
+                </div>
               </div>
             </div>
           </div>
@@ -1127,7 +1407,7 @@
 
     <b-card class="card card-accent-primary">
       <div slot="header">
-        {{$t("attachment")}}
+        {{ $t("attachment") }}
         <div class="card-header-actions">
           <b-link class="card-header-action btn-minimize" v-b-toggle.collapse3>
             <span class="when-opened">
@@ -1156,7 +1436,12 @@
                 @change="onFileChange"
                 style="display: none"
               /> -->
-              <dropzone id="dropzone" :useCustomSlot="true" :options="dropzoneOptions" @vdropzone-files-added="onFileChange">
+              <dropzone
+                id="dropzone"
+                :useCustomSlot="true"
+                :options="dropzoneOptions"
+                @vdropzone-files-added="onFileChange"
+              >
                 <i class="cui-cloud-upload icons font-2xl d-block"></i>
                 <div>Upload files</div>
               </dropzone>
@@ -1174,12 +1459,14 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody v-if="formdata.priceQuotationAttachment.length >0">
+                  <tbody v-if="formdata.priceQuotationAttachment.length > 0">
                     <tr
-                      v-for="(attachemnt,index) in formdata.priceQuotationAttachment"
+                      v-for="(
+                        attachemnt, index
+                      ) in formdata.priceQuotationAttachment"
                       v-if="!attachemnt.deleted"
                     >
-                      <td>{{attachemnt.fileName}}</td>
+                      <td>{{ attachemnt.fileName }}</td>
                       <td>
                         <input
                           type="text"
@@ -1187,7 +1474,7 @@
                           class="form-control"
                           v-model="attachemnt.description"
                           autocomplete="off"
-                         :maxlength="$store.getters.getMaxLength.length30"
+                          :maxlength="$store.getters.getMaxLength.length30"
                         />
                       </td>
                       <td>
@@ -1199,8 +1486,14 @@
                           <i class="fa fa-trash"></i>
                         </a>
 
-                        <a style="cursor: pointer;"
-                          @click="downloadAttachment(attachemnt.quid,attachemnt.fileName)"
+                        <a
+                          style="cursor: pointer"
+                          @click="
+                            downloadAttachment(
+                              attachemnt.quid,
+                              attachemnt.fileName
+                            )
+                          "
                           v-if="attachemnt.id"
                           class="ml-1"
                         >
@@ -1221,7 +1514,7 @@
       <div>
         <button class="btn btn-primary" v-on:click="save()">
           <i class="fa fa-save"></i>
-          {{$t("Save")}}
+          {{ $t("Save") }}
         </button>
       </div>
     </div>
@@ -1247,7 +1540,7 @@
 <script>
 import moment from "moment";
 import axios from "axios";
-import dropzone from "vue2-dropzone"
+import dropzone from "vue2-dropzone";
 
 export default {
   name: "create",
@@ -1267,7 +1560,7 @@ export default {
         //   Authorization: `Access Token`
         // },
         // The way you want to receive the files in the server
-        paramName: function() {
+        paramName: function () {
           return "file[]";
         },
         dictDefaultMessage: "Upload Files Here xD",
@@ -1276,16 +1569,16 @@ export default {
         // thumbnailWidth: 250,
         // thumbnailHeight: 140,
         uploadMultiple: true,
-        parallelUploads: 20
+        parallelUploads: 20,
       },
       fullscreenLoading: false,
       quoteType: "",
       quoteList: [],
       stagelist: [],
       calculationSheetTypeList: [
-        {id:1,name:"Medical Equipment"},
-        {id:2,name:"Tender"},
-        {id:3,name:"Lab"},
+        { id: 1, name: "Medical Equipment" },
+        { id: 2, name: "Tender" },
+        { id: 3, name: "Lab" },
       ],
       usersList: [],
       calculationSheetList: [],
@@ -1319,29 +1612,30 @@ export default {
         total: "",
         salesPerson: "",
         calculationSheetMainGroup: [],
-        calculationSheetType:""
+        calculationSheetType: "",
       },
       customerName: "",
       qouteID: this.$route.params.quoteID,
       appLink: this.$store.getters.serverURI
         ? this.$store.getters.serverURI
         : "",
-      CalSheetId: this.$route.params.CalSheetId
+      CalSheetId: this.$route.params.CalSheetId,
     };
   },
   mounted() {},
 
-  created() {
-    this.getCalculationSheetList();
+  async created() {
+    await this.getCalculationSheetList();
     this.FillQuoteType();
     this.FillUsersList();
     this.FillStageType();
 
-    if (this.qouteID && !this.CalSheetId) {
+    if (this.qouteID != -1 && !this.CalSheetId) {
       this.fetchPriceQuotationData(this.qouteID);
     }
 
-    if (this.CalSheetId && !this.qouteID) {
+    if (this.CalSheetId && this.qouteID == -1) {
+      this.qouteID = null;
       this.formdata.calculationSheetId = this.CalSheetId;
       this.selectCalculationSheet();
     }
@@ -1355,41 +1649,51 @@ export default {
       }
     },
     selectCalculationSheet() {
-      const selectedCalSheet =this.calculationSheetList.find(x=>x.id == this.formdata.calculationSheetId);
-      this.formdata.calculationSheetType = selectedCalSheet.calculationSheetType;
+      const selectedCalSheet = this.calculationSheetList.find(
+        (x) => x.id == this.formdata.calculationSheetId
+      );
+
+      this.formdata.calculationSheetType =
+        selectedCalSheet.calculationSheetType;
       this.fullscreenLoading = true;
 
       var urlStr =
         this.$store.getters.serverURI +
         "api/PriceQuotation/CalculationSheet/" +
-        this.formdata.calculationSheetId +"/"+this.formdata.calculationSheetType +
+        this.formdata.calculationSheetId +
+        "/" +
+        this.formdata.calculationSheetType +
         "/GetSelectedItems";
       this.$http
         .get(urlStr, {
-          headers: this.$store.getters.tokenAuthonticationHeaderObj
+          headers: this.$store.getters.tokenAuthonticationHeaderObj,
         })
         .then(
-          function(data) {
+          function (data) {
             this.fullscreenLoading = false;
             this.formdata.total = parseFloat(
               data.body.bankBlockViewModel.totalAmount
-            ).toFixed(3).slice(0,-1)
+            )
+              .toFixed(3)
+              .slice(0, -1);
             this.formdata.total = this.toUSD(this.formdata.total);
             this.calculationSheetItem =
               data.body.calculationSheetMainGroupViewModel;
 
-            if( this.formdata.calculationSheetType ==2 ){//tender
-            
+            if (this.formdata.calculationSheetType == 2) {
+              //tender
+
               for (const val of Object.values(this.calculationSheetItem)) {
                 val.calculationSheetItem = val.tenderCalculationSheetItem;
-                val.calculationSheetOptionalGroupMapper = val.tenderCalculationSheetOptionalGroup;
+                val.calculationSheetOptionalGroupMapper =
+                  val.tenderCalculationSheetOptionalGroup;
               }
-            } 
-            else  if( this.formdata.calculationSheetType ==3 ){//lab              
+            } else if (this.formdata.calculationSheetType == 3) {
+              //lab
               for (const val of Object.values(this.calculationSheetItem)) {
-                val.calculationSheetItem=val.labCalculationSheetItem;
-                val.calculationSheetOptionalGroupMapper =val.labCalculationSheetOptionalGroup
-
+                val.calculationSheetItem = val.labCalculationSheetItem;
+                val.calculationSheetOptionalGroupMapper =
+                  val.labCalculationSheetOptionalGroup;
               }
             }
 
@@ -1433,19 +1737,19 @@ export default {
 
             this.fullscreenLoading = false;
           },
-          function(error) {
+          function (error) {
             this.fullscreenLoading = false;
             this.$message({
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "error",
-              message: this.$t("ErrorMessage")
+              message: this.$t("ErrorMessage"),
             });
           }
         );
     },
-    save: function() {
-      this.$validator.validateAll("priceQouteValidation").then(result => {
+    save: function () {
+      this.$validator.validateAll("priceQouteValidation").then((result) => {
         if (result) {
           var urlStr = this.$store.getters.serverURI + "api/PriceQuotation";
           if (this.qouteID) {
@@ -1453,26 +1757,26 @@ export default {
             this.fullscreenLoading = true;
             this.$http
               .put(urlStr, this.formdata, {
-                headers: this.$store.getters.tokenAuthonticationHeaderObj
+                headers: this.$store.getters.tokenAuthonticationHeaderObj,
               })
               .then(
-                response => {
+                (response) => {
                   this.fullscreenLoading = false;
                   this.$message({
                     showClose: true,
                     duration: this.$store.getters.getMessagesDuration,
                     type: "success",
-                    message: this.$t("PriceQuotationUpdatedSuccessfully")
+                    message: this.$t("PriceQuotationUpdatedSuccessfully"),
                   });
                   this.$router.push({ path: "/priceQuotations/list" });
                 },
-                function(error) {
+                function (error) {
                   this.fullscreenLoading = false;
                   this.$message({
                     showClose: true,
                     duration: this.$store.getters.getMessagesDuration,
                     type: "error",
-                    message: this.$t("ErrorMessage")
+                    message: this.$t("ErrorMessage"),
                   });
                 }
               );
@@ -1484,26 +1788,26 @@ export default {
 
             this.$http
               .post(urlStr, this.formdata, {
-                headers: this.$store.getters.tokenAuthonticationHeaderObj
+                headers: this.$store.getters.tokenAuthonticationHeaderObj,
               })
               .then(
-                response => {
+                (response) => {
                   this.fullscreenLoading = false;
                   this.$message({
                     showClose: true,
                     duration: this.$store.getters.getMessagesDuration,
                     type: "success",
-                    message: this.$t("PriceQuotationCreatedSuccessfully")
+                    message: this.$t("PriceQuotationCreatedSuccessfully"),
                   });
                   this.$router.push({ path: "/priceQuotations/list" });
                 },
-                function(error) {
+                function (error) {
                   this.fullscreenLoading = false;
                   this.$message({
                     showClose: true,
                     duration: this.$store.getters.getMessagesDuration,
                     type: "error",
-                    message: this.$t("ErrorMessage")
+                    message: this.$t("ErrorMessage"),
                   });
                 }
               );
@@ -1523,7 +1827,7 @@ export default {
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "warning",
-              message: this.$t("20MB")
+              message: this.$t("20MB"),
             });
           }
         }
@@ -1534,7 +1838,7 @@ export default {
       var reader = new FileReader();
       var vm = this;
       reader.readAsDataURL(file);
-      reader.onload = e => {
+      reader.onload = (e) => {
         var filebase64 = e.target.result;
         var filebasee64Array = filebase64.split(",");
         vm.formdata.priceQuotationAttachment.push({
@@ -1543,7 +1847,7 @@ export default {
           priceQuotationId: this.qouteID ? this.qouteID : 0,
           creationDate: "",
           updateDate: "",
-          base64FileString: filebasee64Array[1]
+          base64FileString: filebasee64Array[1],
         });
       };
     },
@@ -1555,33 +1859,38 @@ export default {
     },
     downloadAttachment(quid, name) {
       let urlStr =
-        this.$store.getters.serverURI + "api/PriceQuotation/DownLoadFile/" + quid + "/?name=" +name;
+        this.$store.getters.serverURI +
+        "api/PriceQuotation/DownLoadFile/" +
+        quid +
+        "/?name=" +
+        name;
 
       axios({
         method: "post",
         url: urlStr,
         headers: this.$store.getters.tokenAuthonticationHeaderObj,
-        responseType: "blob"
-      }).then(response => {
-        this.fullscreenLoading = false;
-        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-        var fileLink = document.createElement("a");
-        var fileName = name;
-        fileLink.href = fileURL;
-        fileLink.setAttribute("download",fileName);
-        document.body.appendChild(fileLink);
-
-        fileLink.click();
+        responseType: "blob",
       })
-      .catch((error) => {
-        this.fullscreenLoading = false;
-        this.$message({
+        .then((response) => {
+          this.fullscreenLoading = false;
+          var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+          var fileLink = document.createElement("a");
+          var fileName = name;
+          fileLink.href = fileURL;
+          fileLink.setAttribute("download", fileName);
+          document.body.appendChild(fileLink);
+
+          fileLink.click();
+        })
+        .catch((error) => {
+          this.fullscreenLoading = false;
+          this.$message({
             showClose: true,
             duration: this.$store.getters.getMessagesDuration,
             type: "error",
-            message: error.body.message
+            message: error.body.message,
+          });
         });
-      });
     },
 
     resetFileInput() {
@@ -1594,12 +1903,11 @@ export default {
       var vm = this;
       this.$http
         .get(urlStr, {
-          headers: this.$store.getters.tokenAuthonticationHeaderObj
+          headers: this.$store.getters.tokenAuthonticationHeaderObj,
         })
         .then(
-          function(data) {
+          function (data) {
             if (data.body) {
-              
               this.formdata.subject = data.body.subject;
               this.formdata.calculationSheetId = data.body.calculationSheetId;
               this.formdata.quoteNumber = data.body.quoteNumber;
@@ -1621,27 +1929,27 @@ export default {
               this.formdata.calculationSheetMainGroup =
                 data.body.calculationSheetMainGroup;
               this.formdata.calculationSheetType =
-              data.body.calculationSheetType;
+                data.body.calculationSheetType;
 
               if (!this.CalSheetId) {
                 this.selectCalculationSheet();
               }
             }
           },
-          function(error) {
+          function (error) {
             this.fullscreenLoading = false;
             this.$message({
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "error",
-              message: this.$t("ErrorMessage")
+              message: this.$t("ErrorMessage"),
             });
           }
         );
     },
-    getCalculationSheetList(query = "") {
+    async getCalculationSheetList(query = "") {
       var urlStr = "";
-      if (this.qouteID) {
+      if (this.qouteID && this.qouteID != -1) {
         urlStr =
           this.$store.getters.serverURI +
           "api/CalculationSheet/GetCalculationSheetsThatHasNoPriceQuotation?priceQuotationId=" +
@@ -1651,103 +1959,101 @@ export default {
           this.$store.getters.serverURI +
           "api/CalculationSheet/GetCalculationSheetsThatHasNoPriceQuotation?priceQuotationId=0";
       }
-      this.$http
+      await this.$http
         .get(urlStr, {
-          headers: this.$store.getters.tokenAuthonticationHeaderObj
+          headers: this.$store.getters.tokenAuthonticationHeaderObj,
         })
         .then(
-          function(data) {
-            
+          function (data) {
             this.calculationSheetList = data.body;
           },
-          function(error) {
+          function (error) {
             this.$message({
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "error",
-              message: this.$t("ErrorMessage")
+              message: this.$t("ErrorMessage"),
             });
           }
         );
     },
-    FillQuoteType: function() {
+    FillQuoteType: function () {
       var urlStr =
         this.$store.getters.serverURI +
         "api/lookup/GetByType/" +
         this.$store.getters.getLookupCategory.priceQouteType;
       this.$http
         .get(urlStr, {
-          headers: this.$store.getters.tokenAuthonticationHeaderObj
+          headers: this.$store.getters.tokenAuthonticationHeaderObj,
         })
         .then(
-          function(data) {
+          function (data) {
             this.quoteList = data.body;
           },
-          function(error) {
+          function (error) {
             this.$message({
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "error",
-              message: this.$t("ErrorMessage")
+              message: this.$t("ErrorMessage"),
             });
           }
         );
     },
-    FillUsersList: function() {
+    FillUsersList: function () {
       var urlStr = this.$store.getters.serverURI + "api/User/GetAll";
       this.$http
         .get(urlStr, {
-          headers: this.$store.getters.tokenAuthonticationHeaderObj
+          headers: this.$store.getters.tokenAuthonticationHeaderObj,
         })
         .then(
-          function(data) {
+          function (data) {
             this.usersList = data.body;
           },
-          function(error) {
+          function (error) {
             this.$message({
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "error",
-              message: this.$t("ErrorMessage")
+              message: this.$t("ErrorMessage"),
             });
           }
         );
     },
-    FillStageType: function() {
+    FillStageType: function () {
       var urlStr =
         this.$store.getters.serverURI +
         "api/lookup/GetByType/" +
         this.$store.getters.getLookupCategory.stageType;
       this.$http
         .get(urlStr, {
-          headers: this.$store.getters.tokenAuthonticationHeaderObj
+          headers: this.$store.getters.tokenAuthonticationHeaderObj,
         })
         .then(
-          function(data) {
-            
+          function (data) {
             this.stagelist = data.body;
-            this.stagelist.forEach(element => {
+            this.stagelist.forEach((element) => {
               if (element.id == 29 && !this.qouteID) {
                 this.formdata.stageId = 29;
               }
             });
           },
-          function(error) {
+          function (error) {
             this.$message({
               showClose: true,
               duration: this.$store.getters.getMessagesDuration,
               type: "error",
-              message: this.$t("ErrorMessage")
+              message: this.$t("ErrorMessage"),
             });
           }
         );
-    }
+    },
   },
   watch: {
     formdata: {
       handler(val) {},
-      deep: true
-    }
-  }
+      deep: true,
+    },
+  },
 };
 </script>

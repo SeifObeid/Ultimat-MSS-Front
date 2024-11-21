@@ -7,7 +7,11 @@
         icon="el-icon-info"
       ></el-step>
       <!-- <el-step :title="$t('Items')" @click.native="nextStep(0)" icon="el-icon-tickets"></el-step> -->
-      <el-step :title="$t('Items')" @click.native="ItemsStep()" icon="el-icon-tickets"></el-step>
+      <el-step
+        :title="$t('Items')"
+        @click.native="ItemsStep()"
+        icon="el-icon-tickets"
+      ></el-step>
     </el-steps>
     <div class="panel panel-default">
       <div class="panel-body">
@@ -20,17 +24,18 @@
               v-bind:active="active"
               v-on:next-step="nextStep(1)"
               v-on:previous-step="previousStep()"
-              @clicked="setCalcSheetId">
+              @clicked="setCalcSheetId"
+            >
             </basic-information>
           </div>
 
-          <div v-if="active==1">
+          <div v-if="active == 1">
             <items
               ref="items"
               :calSheetId="calSheetId"
               v-bind:active="active"
               v-on:previous-step="previousStep()"
-              @withoutConfirm="withoutConfirm=true"
+              @withoutConfirm="withoutConfirm = true"
             >
             </items>
           </div>
@@ -52,79 +57,87 @@ export default {
   props: ["predata"],
   data() {
     return {
-      calSheetId: this.$route.params.CalSheetId? parseInt(this.$route.params.CalSheetId) : null,
+      calSheetId: this.$route.params.CalSheetId
+        ? parseInt(this.$route.params.CalSheetId)
+        : null,
       active: 0,
       withoutConfirm: false,
     };
   },
-  beforeRouteLeave (to, from , next) {
-      // debugger
-      
-      if(this.$refs.items){
-        var groupsCount2=[]
-        this.$refs.items.calculationSheetGroups.forEach(element => {
-          groupsCount2.push(element.calculationSheetItem.length)
-        });
-        var isEqualFlag= this.isEqual(this.$refs.items.groupsCount, groupsCount2)
-      
-      
-        if(!(to.path.includes('NewCalculationSheet')||isEqualFlag||this.withoutConfirm)){
-          const h = this.$createElement;
-          this.$msgbox({
-            title: this.$t("Confirm"),
-            message: h("p", null, [
-              h("span", null, this.$t("ConfirmLeave"))
-            ]),
-            showCancelButton: true,
-            confirmButtonText: this.$t("Leave"),
-            cancelButtonText: this.$t("Stay"),
-            beforeClose: (action, instance, done) => {
-              if (action === "confirm") {
-                next();
-                done();
-              } else {
-                done();
-              }
+  beforeRouteLeave(to, from, next) {
+    // debugger
+
+    if (this.$refs.items) {
+      var groupsCount2 = [];
+      this.$refs.items.calculationSheetGroups.forEach((element) => {
+        groupsCount2.push(element.calculationSheetItem.length);
+      });
+      var isEqualFlag = this.isEqual(
+        this.$refs.items.groupsCount,
+        groupsCount2
+      );
+
+      if (
+        !(
+          to.path.includes("NewCalculationSheet") ||
+          isEqualFlag ||
+          this.withoutConfirm
+        )
+      ) {
+        const h = this.$createElement;
+        this.$msgbox({
+          title: this.$t("Confirm"),
+          message: h("p", null, [h("span", null, this.$t("ConfirmLeave"))]),
+          showCancelButton: true,
+          confirmButtonText: this.$t("Leave"),
+          cancelButtonText: this.$t("Stay"),
+          beforeClose: (action, instance, done) => {
+            if (action === "confirm") {
+              next();
+              done();
+            } else {
+              done();
             }
-          })
-        }else{
-          this.withoutConfirm = false;
-          next()
-        }
-      }else{
-        next()
+          },
+        });
+      } else {
+        this.withoutConfirm = false;
+        next();
       }
+    } else {
+      next();
+    }
   },
   methods: {
-    isEqual(arr1,arr2){
-        // Check if the arrays are the same length
-        if (arr1.length !== arr2.length) return false;
+    isEqual(arr1, arr2) {
+      // Check if the arrays are the same length
+      if (arr1.length !== arr2.length) return false;
 
-        // Check if all items exist and are in the same order
-        for (var i = 0; i < arr1.length; i++) {
-            if (arr1[i] !== arr2[i]) return false;
-        }
-        return true
+      // Check if all items exist and are in the same order
+      for (var i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) return false;
+      }
+      return true;
     },
-    destroy(){
-        // debugger;
-        window.removeEventListener('beforeunload', (event)=>{
-          this.reload(event)
-        });
-        window.removeEventListener('unload', (event)=>{
-          this.reload(event)
-        });
+    destroy() {
+      // debugger;
+      window.removeEventListener("beforeunload", (event) => {
+        this.reload(event);
+      });
+      window.removeEventListener("unload", (event) => {
+        this.reload(event);
+      });
     },
-    setCalcSheetId: function(value) {
+    setCalcSheetId: function (value) {
       this.calSheetId = value;
     },
-    nextStep: function(step = null) {
+    nextStep: function (step = null) {
       if (!this.calSheetId && this.active == 0) {
         this.$message({
           showClose: true,
           duration: this.$store.getters.getMessagesDuration,
           type: "warning",
-          message: this.$t("EnsureSaveFirstStep")
+          message: this.$t("EnsureSaveFirstStep"),
         });
         return false;
       }
@@ -135,13 +148,13 @@ export default {
       }
       this.active++;
     },
-    previousStep: function() {
+    previousStep: function () {
       setTimeout(() => {
         this.$refs.basic.FillData();
       }, 400);
-       this.active--;
+      this.active--;
     },
-    basicInformationStep: function() {
+    basicInformationStep: function () {
       this.$refs.items.saveDataAction(true);
       setTimeout(() => {
         this.$refs.basic.FillData();
@@ -151,28 +164,28 @@ export default {
         this.active = 0;
       }, 1000);
     },
-    ItemsStep: function() {
-     var isSuccess =  this.$refs.basic.saveCalSheet(true);
-     if(isSuccess){
-       setTimeout(() => {
-        this.active = 1;
-      }, 500);
-     }
+    ItemsStep: function () {
+      var isSuccess = this.$refs.basic.saveCalSheet(true);
+      if (isSuccess) {
+        setTimeout(() => {
+          this.active = 1;
+        }, 500);
+      }
       // return;
     },
-    reload(event){
-        event.preventDefault();
-        event.returnValue = '';
-    }
+    reload(event) {
+      event.preventDefault();
+      event.returnValue = "";
+    },
   },
-  created: function() {
-    window.addEventListener('beforeunload', (event) => {
-      this.reload(event)
-      });
-    window.addEventListener('unload', (event) => {
-       this.reload(event)
+  created: function () {
+    window.addEventListener("beforeunload", (event) => {
+      this.reload(event);
     });
-  }
+    window.addEventListener("unload", (event) => {
+      this.reload(event);
+    });
+  },
 };
 </script>
 

@@ -1,20 +1,20 @@
-import Vue from 'vue'
-import store from '../store/store'
-import Router from 'vue-router'
-import moment from "moment"
-import { checkPagePermession } from "../shared/utils"
+import Vue from "vue";
+import store from "../store/store";
+import Router from "vue-router";
+import moment from "moment";
+import { checkPagePermession } from "../shared/utils";
 
 // Containers
-const DefaultContainer = () => import('@/containers/DefaultContainer')
+const DefaultContainer = () => import("@/containers/DefaultContainer");
 
 // Views
-const Dashboard = () => import('@/views/Dashboard')
+const Dashboard = () => import("@/views/Dashboard");
 
-const Colors = () => import('@/views/theme/Colors')
-const Typography = () => import('@/views/theme/Typography')
+const Colors = () => import("@/views/theme/Colors");
+const Typography = () => import("@/views/theme/Typography");
 
-const Charts = () => import('@/views/Charts')
-const Widgets = () => import('@/views/Widgets')
+const Charts = () => import("@/views/Charts");
+const Widgets = () => import("@/views/Widgets");
 
 // Views - Components
 /*const Cards = () => import('@/views/base/Cards')
@@ -35,243 +35,258 @@ const ProgressBars = () => import('@/views/base/ProgressBars')
 const Tooltips = () => import('@/views/base/Tooltips')*/
 
 // Views - Buttons
-const StandardButtons = () => import('@/views/buttons/StandardButtons')
-const ButtonGroups = () => import('@/views/buttons/ButtonGroups')
-const Dropdowns = () => import('@/views/buttons/Dropdowns')
-const BrandButtons = () => import('@/views/buttons/BrandButtons')
+const StandardButtons = () => import("@/views/buttons/StandardButtons");
+const ButtonGroups = () => import("@/views/buttons/ButtonGroups");
+const Dropdowns = () => import("@/views/buttons/Dropdowns");
+const BrandButtons = () => import("@/views/buttons/BrandButtons");
 
 // Views - Icons
-const Flags = () => import('@/views/icons/Flags')
-const FontAwesome = () => import('@/views/icons/FontAwesome')
-const SimpleLineIcons = () => import('@/views/icons/SimpleLineIcons')
-const CoreUIIcons = () => import('@/views/icons/CoreUIIcons')
+const Flags = () => import("@/views/icons/Flags");
+const FontAwesome = () => import("@/views/icons/FontAwesome");
+const SimpleLineIcons = () => import("@/views/icons/SimpleLineIcons");
+const CoreUIIcons = () => import("@/views/icons/CoreUIIcons");
 
 // Views - Notifications
-const Alerts = () => import('@/views/notifications/Alerts')
-const Badges = () => import('@/views/notifications/Badges')
-const Modals = () => import('@/views/notifications/Modals')
+const Alerts = () => import("@/views/notifications/Alerts");
+const Badges = () => import("@/views/notifications/Badges");
+const Modals = () => import("@/views/notifications/Modals");
 
 // Views - Pages
-const Page404 = () => import('@/views/pages/Page404')
-const Page500 = () => import('@/views/pages/Page500')
-const Login = () => import('@/views/pages/Login')
-const Register = () => import('@/views/pages/Register')
-const Forget = () => import('@/views/pages/ForgetPassword')
-const Reset = () => import('@/views/pages/ResetPassword')
-const Verify = () => import('@/views/pages/VerifyEmail')
+const Page404 = () => import("@/views/pages/Page404");
+const Page500 = () => import("@/views/pages/Page500");
+const Login = () => import("@/views/pages/Login");
+const Register = () => import("@/views/pages/Register");
+const Forget = () => import("@/views/pages/ForgetPassword");
+const Reset = () => import("@/views/pages/ResetPassword");
+const Verify = () => import("@/views/pages/VerifyEmail");
 
 // Users
-const Users = () => import('@/views/users/Users')
-const User = () => import('@/views/users/User')
+const Users = () => import("@/views/users/Users");
+const User = () => import("@/views/users/User");
 
 //User Management
-const RolesList = () => import('@/components/userManagement/roles/RolesList')
+const RolesList = () => import("@/components/userManagement/roles/RolesList");
 
-const AddEditRole = () => import('@/components/userManagement/roles/AddEditRole')
-const UsersList = () => import('@/components/userManagement/users/UsersList')
-const AddEditUser = () => import('@/components/userManagement/users/AddEditUser')
-const UserProfile = () => import('@/components/userManagement/users/UserProfile')
+const AddEditRole = () =>
+  import("@/components/userManagement/roles/AddEditRole");
+const UsersList = () => import("@/components/userManagement/users/UsersList");
+const AddEditUser = () =>
+  import("@/components/userManagement/users/AddEditUser");
+const UserProfile = () =>
+  import("@/components/userManagement/users/UserProfile");
 
 //Events
-const Calendar = () => import('@/components/events/Calendar')
-const EmailSettings = () => import('@/components/events/EmailSettings')
+const Calendar = () => import("@/components/events/Calendar");
+const EmailSettings = () => import("@/components/events/EmailSettings");
 
 //Calculation Sheet
-const ItemsGroupConfiguration = () => import('@/components/ItemsGroup/ItemsGroupConfiguration')
-const ItemsGroupList = () => import('@/components/ItemsGroup/ItemsGroupList')
+const ItemsGroupConfiguration = () =>
+  import("@/components/ItemsGroup/ItemsGroupConfiguration");
+const ItemsGroupList = () => import("@/components/ItemsGroup/ItemsGroupList");
 
-const ItemsManagmentList = () => import('@/components/Items/index')
-const Items = () => import('@/components/Items/create')
+const ItemsManagmentList = () => import("@/components/Items/index");
+const Items = () => import("@/components/Items/create");
 
+const calculationSheetList = () =>
+  import("@/components/calculationSheet/CalculationSheetList");
 
-const calculationSheetList = () => import('@/components/calculationSheet/CalculationSheetList')
-
-const CalculationSheetMaster = () => import('@/components/calculationSheet/CalculationSheetMaster')
-const CalcualtionSheetView = () => import('@/components/calculationSheet/show')
+const CalculationSheetMaster = () =>
+  import("@/components/calculationSheet/CalculationSheetMaster");
+const CalcualtionSheetView = () => import("@/components/calculationSheet/show");
 // const MasterCalculationSheet = () => import('@/components/masterCalculationSheet/index')
 
-const WorkflowDefinitionList = () => import('@/components/WorkflowDefinition/WorkflowDefinitionList')
-const AddEditWorkflow = () => import('@/components/WorkflowDefinition/AddEditWorkflow')
-const WorkflowLog = () => import('@/components/WorkflowDefinition/WorkflowLog')
+const WorkflowDefinitionList = () =>
+  import("@/components/WorkflowDefinition/WorkflowDefinitionList");
+const AddEditWorkflow = () =>
+  import("@/components/WorkflowDefinition/AddEditWorkflow");
+const WorkflowLog = () => import("@/components/WorkflowDefinition/WorkflowLog");
 
-const awardingSheetList = () => import('@/components/awardingSheet/index')
-const newAwardingSheet = () => import('@/components/awardingSheet/create')
-const showAwardingSheet = () => import('@/components/awardingSheet/show')
+const awardingSheetList = () => import("@/components/awardingSheet/index");
+const newAwardingSheet = () => import("@/components/awardingSheet/create");
+const showAwardingSheet = () => import("@/components/awardingSheet/show");
 
+const priceQuotationList = () => import("@/components/priceQuotations/index");
+const newPriceQuotation = () => import("@/components/priceQuotations/create");
+const showPriceQuotation = () => import("@/components/priceQuotations/show");
 
-const priceQuotationList = () => import('@/components/priceQuotations/index')
-const newPriceQuotation = () => import('@/components/priceQuotations/create')
-const showPriceQuotation = () => import('@/components/priceQuotations/show')
-
-
-const TrackingSheetList = () => import('@/components/trackingSheet/TrackingSheetList')
-
+const TrackingSheetList = () =>
+  import("@/components/trackingSheet/TrackingSheetList");
 
 //---------------------------Tender-----------------------------------------------
 //Events
-const tenderCalendar = () => import('@/components/tenderEvents/Calendar')
+const tenderCalendar = () => import("@/components/tenderEvents/Calendar");
 
 //Calculation Sheet
-const tenderItemsGroupConfiguration = () => import('@/components/tenderItemsGroup/ItemsGroupConfiguration')
-const tenderItemsGroupList = () => import('@/components/tenderItemsGroup/ItemsGroupList')
+const tenderItemsGroupConfiguration = () =>
+  import("@/components/tenderItemsGroup/ItemsGroupConfiguration");
+const tenderItemsGroupList = () =>
+  import("@/components/tenderItemsGroup/ItemsGroupList");
 
-const tenderItemsManagmentList = () => import('@/components/tenderItems/index')
-const tenderItems = () => import('@/components/tenderItems/create')
+const tenderItemsManagmentList = () => import("@/components/tenderItems/index");
+const tenderItems = () => import("@/components/tenderItems/create");
 
+const tenderCalculationSheetList = () =>
+  import("@/components/tenderCalculationSheet/CalculationSheetList");
 
-const tenderCalculationSheetList = () => import('@/components/tenderCalculationSheet/CalculationSheetList')
-
-const tenderCalculationSheetMaster = () => import('@/components/tenderCalculationSheet/CalculationSheetMaster')
-const tenderCalcualtionSheetView = () => import('@/components/tenderCalculationSheet/show')
+const tenderCalculationSheetMaster = () =>
+  import("@/components/tenderCalculationSheet/CalculationSheetMaster");
+const tenderCalcualtionSheetView = () =>
+  import("@/components/tenderCalculationSheet/show");
 // const tenderMasterCalculationSheet = () => import('@/components/tenderMasterCalculationSheet/index')
 
-const tenderWorkflowDefinitionList = () => import('@/components/tenderWorkflowDefinition/WorkflowDefinitionList')
-const tenderAddEditWorkflow = () => import('@/components/tenderWorkflowDefinition/AddEditWorkflow')
-const tenderWorkflowLog = () => import('@/components/tenderWorkflowDefinition/WorkflowLog')
-const labWorkflowLog = () => import('@/components/tenderWorkflowDefinition/labWorkflowLog')
+const tenderWorkflowDefinitionList = () =>
+  import("@/components/tenderWorkflowDefinition/WorkflowDefinitionList");
+const tenderAddEditWorkflow = () =>
+  import("@/components/tenderWorkflowDefinition/AddEditWorkflow");
+const tenderWorkflowLog = () =>
+  import("@/components/tenderWorkflowDefinition/WorkflowLog");
+const labWorkflowLog = () =>
+  import("@/components/tenderWorkflowDefinition/labWorkflowLog");
 
-const tenderAwardingSheetList = () => import('@/components/tenderAwardingSheet/index')
+const tenderAwardingSheetList = () =>
+  import("@/components/tenderAwardingSheet/index");
 // const tenderNewAwardingSheet = () => import('@/components/tenderAwardingSheet/create')
-const tenderShowAwardingSheet = () => import('@/components/tenderAwardingSheet/show')
+const tenderShowAwardingSheet = () =>
+  import("@/components/tenderAwardingSheet/show");
 
-
-const tenderPriceQuotationList = () => import('@/components/tenderPriceQuotations/index')
-const tenderNewPriceQuotation = () => import('@/components/tenderPriceQuotations/create')
-const tenderShowPriceQuotation = () => import('@/components/tenderPriceQuotations/show')
+const tenderPriceQuotationList = () =>
+  import("@/components/tenderPriceQuotations/index");
+const tenderNewPriceQuotation = () =>
+  import("@/components/tenderPriceQuotations/create");
+const tenderShowPriceQuotation = () =>
+  import("@/components/tenderPriceQuotations/show");
 //-------------------------- End Tender ------------------------------------------
 
 //Calculation Sheet
 
+const labCalculationSheetList = () =>
+  import("@/components/LabCalculationSheet/CalculationSheetList");
 
-const labCalculationSheetList = () => import('@/components/LabCalculationSheet/CalculationSheetList')
-
-const labCalculationSheetMaster = () => import('@/components/LabCalculationSheet/CalculationSheetMaster')
-const labCalcualtionSheetView = () => import('@/components/LabCalculationSheet/show')
+const labCalculationSheetMaster = () =>
+  import("@/components/LabCalculationSheet/CalculationSheetMaster");
+const labCalcualtionSheetView = () =>
+  import("@/components/LabCalculationSheet/show");
 //const LabMasterCalculationSheet = () => import('@/components/LabMasterCalculationSheet/index')
 
-
 //-------------------------- End Lab ------------------------------------------
-
-
 
 Vue.use(Router);
 Vue.use(moment);
 
-
 export const router = new Router({
   // mode: 'hash', // https://router.vuejs.org/api/#mode
   // mode:"hash",
-  root: '/',
-  linkActiveClass: 'open active',
+  root: "/",
+  linkActiveClass: "open active",
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      path: '/login',
-      name: 'login',
+      path: "/login",
+      name: "login",
       component: Login,
       meta: {
-        permission: 'all'
-      }
+        permission: "all",
+      },
     },
     {
-      path: '/forget',
-      name: 'forget',
+      path: "/forget",
+      name: "forget",
       component: Forget,
       meta: {
-        permission: 'all'
-      }
+        permission: "all",
+      },
     },
     {
-      path: '/reset',
-      name: 'reset',
+      path: "/reset",
+      name: "reset",
       component: Reset,
       meta: {
-        permission: 'all'
-      }
+        permission: "all",
+      },
     },
     {
-      path: '/Verify/:UserId?',
-      name: 'Verify',
+      path: "/Verify/:UserId?",
+      name: "Verify",
       component: Verify,
       meta: {
-        permission: 'all'
-      }
+        permission: "all",
+      },
     },
     {
-      path: '/',
-      redirect: '/dashboard',
-      name: 'Home',
+      path: "/",
+      redirect: "/dashboard",
+      name: "Home",
       component: DefaultContainer,
       meta: {
-        permission: 'all'
+        permission: "all",
       },
       children: [
         {
-          path: '/dashboard',
-          name: 'Dashboard',
+          path: "/dashboard",
+          name: "Dashboard",
           component: Dashboard,
           meta: {
-            permission: 'all'
-          }
+            permission: "all",
+          },
         },
         {
-          path: '/theme',
-          redirect: 'theme/colors',
-          name: 'Theme',
+          path: "/theme",
+          redirect: "theme/colors",
+          name: "Theme",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'colors',
-              name: 'Colors',
-              component: Colors
+              path: "colors",
+              name: "Colors",
+              component: Colors,
             },
             {
-              path: 'typography',
-              name: 'Typography',
-              component: Typography
-            }
-          ]
+              path: "typography",
+              name: "Typography",
+              component: Typography,
+            },
+          ],
         },
         {
-          path: '/charts',
-          name: 'Charts',
-          component: Charts
+          path: "/charts",
+          name: "Charts",
+          component: Charts,
         },
         {
-          path: '/widgets',
-          name: 'Widgets',
-          component: Widgets
+          path: "/widgets",
+          name: "Widgets",
+          component: Widgets,
         },
         {
-          path: '/users',
+          path: "/users",
           meta: {
-            label: 'Users',
-            permission: 'all'
+            label: "Users",
+            permission: "all",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: '',
+              path: "",
               component: Users,
               meta: {
-                permission: 'all'
-              }
+                permission: "all",
+              },
             },
             {
-              path: ':id',
-              meta: { label: 'User Details', permission: 'all' },
-              name: 'User',
+              path: ":id",
+              meta: { label: "User Details", permission: "all" },
+              name: "User",
               component: User,
             },
-          ]
+          ],
         },
         // {
         //     path: '/base',
@@ -366,285 +381,285 @@ export const router = new Router({
         //     ]
         // },
         {
-          path: 'buttons',
-          redirect: 'buttons/standard-buttons',
-          name: 'Buttons',
+          path: "buttons",
+          redirect: "buttons/standard-buttons",
+          name: "Buttons",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'standard-buttons',
-              name: 'Standard Buttons',
-              component: StandardButtons
+              path: "standard-buttons",
+              name: "Standard Buttons",
+              component: StandardButtons,
             },
             {
-              path: 'button-groups',
-              name: 'Button Groups',
-              component: ButtonGroups
+              path: "button-groups",
+              name: "Button Groups",
+              component: ButtonGroups,
             },
             {
-              path: 'dropdowns',
-              name: 'Dropdowns',
-              component: Dropdowns
+              path: "dropdowns",
+              name: "Dropdowns",
+              component: Dropdowns,
             },
             {
-              path: 'brand-buttons',
-              name: 'Brand Buttons',
-              component: BrandButtons
-            }
-          ]
+              path: "brand-buttons",
+              name: "Brand Buttons",
+              component: BrandButtons,
+            },
+          ],
         },
         {
-          path: '/icons',
-          redirect: 'icons/font-awesome',
-          name: 'Icons',
+          path: "/icons",
+          redirect: "icons/font-awesome",
+          name: "Icons",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'coreui-icons',
-              name: 'CoreUI Icons',
-              component: CoreUIIcons
+              path: "coreui-icons",
+              name: "CoreUI Icons",
+              component: CoreUIIcons,
             },
             {
-              path: 'flags',
-              name: 'Flags',
-              component: Flags
+              path: "flags",
+              name: "Flags",
+              component: Flags,
             },
             {
-              path: 'font-awesome',
-              name: 'Font Awesome',
-              component: FontAwesome
+              path: "font-awesome",
+              name: "Font Awesome",
+              component: FontAwesome,
             },
             {
-              path: 'simple-line-icons',
-              name: 'Simple Line Icons',
-              component: SimpleLineIcons
-            }
-          ]
+              path: "simple-line-icons",
+              name: "Simple Line Icons",
+              component: SimpleLineIcons,
+            },
+          ],
         },
         {
-          path: '/notifications',
-          redirect: 'notifications/alerts',
-          name: 'Notifications',
+          path: "/notifications",
+          redirect: "notifications/alerts",
+          name: "Notifications",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'alerts',
-              name: 'Alerts',
-              component: Alerts
+              path: "alerts",
+              name: "Alerts",
+              component: Alerts,
             },
             {
-              path: 'badges',
-              name: 'Badges',
-              component: Badges
+              path: "badges",
+              name: "Badges",
+              component: Badges,
             },
             {
-              path: 'modals',
-              name: 'Modals',
-              component: Modals
-            }
-          ]
+              path: "modals",
+              name: "Modals",
+              component: Modals,
+            },
+          ],
         },
         {
-          path: '/pages',
-          redirect: 'pages/404',
-          name: 'Pages',
+          path: "/pages",
+          redirect: "pages/404",
+          name: "Pages",
           meta: {
-            permission: 'all'
+            permission: "all",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: '404',
-              name: 'Page404',
+              path: "404",
+              name: "Page404",
               component: Page404,
               meta: {
-                permission: 'all'
-              }
+                permission: "all",
+              },
             },
             {
-              path: '500',
-              name: 'Page500',
+              path: "500",
+              name: "Page500",
               component: Page500,
               meta: {
-                permission: 'all'
-              }
+                permission: "all",
+              },
             },
 
             {
-              path: 'register',
-              name: 'Register',
+              path: "register",
+              name: "Register",
               component: Register,
               meta: {
-                permission: 'all'
-              }
-            }
-          ]
+                permission: "all",
+              },
+            },
+          ],
         },
         {
-          path: '/events',
-          redirect: 'events/calendar',
-          name: 'Events',
+          path: "/events",
+          redirect: "events/calendar",
+          name: "Events",
           meta: {
-            permission: 'Calendar Event'
+            permission: "Calendar Event",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'calendar',
-              name: 'Calendar',
+              path: "calendar",
+              name: "Calendar",
               component: Calendar,
               meta: {
-                permission: 'Calendar Event'
-              }
+                permission: "Calendar Event",
+              },
             },
             {
-              path: 'emailSettings',
-              name: 'EmailSettings',
+              path: "emailSettings",
+              name: "EmailSettings",
               component: EmailSettings,
               meta: {
-                permission: 'Email Setting'
-              }
+                permission: "Email Setting",
+              },
             },
-          ]
+          ],
         },
         //---tender
         {
-          path: '/tenderEvents',
-          redirect: 'tenderEvents/Calendar',
-          name: 'tenderEvents',
+          path: "/tenderEvents",
+          redirect: "tenderEvents/Calendar",
+          name: "tenderEvents",
           meta: {
-            permission: 'Tender Calendar Event'
+            permission: "Tender Calendar Event",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'Calendar',
-              name: 'tenderCalendar',
+              path: "Calendar",
+              name: "tenderCalendar",
               component: tenderCalendar,
               meta: {
-                permission: 'Tender Calendar Event'
-              }
+                permission: "Tender Calendar Event",
+              },
             },
-          ]
+          ],
         },
         //---end tender
         {
-          path: '/sheets',
-          redirect: 'sheets/tracking',
-          name: 'Tracking calculation sheet',
+          path: "/sheets",
+          redirect: "sheets/tracking",
+          name: "Tracking calculation sheet",
           meta: {
-            permission: 'Tracking'
+            permission: "Tracking",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'tracking',
-              name: 'tracking',
+              path: "tracking",
+              name: "tracking",
               component: TrackingSheetList,
               meta: {
-                description: 'Tracking calulation sheet list',
-                label: 'Tracking calulation sheet list',
-                permission: 'Tracking'
+                description: "Tracking calulation sheet list",
+                label: "Tracking calulation sheet list",
+                permission: "Tracking",
               },
-            }
-          ]
+            },
+          ],
         },
         {
-          path: '/userManagement',
-          redirect: 'userManagement/usersList',
-          name: 'UserManagement',
+          path: "/userManagement",
+          redirect: "userManagement/usersList",
+          name: "UserManagement",
           meta: {
-            label: 'User and role management',
-            permission: 'User'
+            label: "User and role management",
+            permission: "User",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'RolesList',
-              name: 'RolesList',
+              path: "RolesList",
+              name: "RolesList",
               component: RolesList,
               meta: {
-                description: 'Roles list',
-                label: 'Roles list',
-                permission: 'Role'
+                description: "Roles list",
+                label: "Roles list",
+                permission: "Role",
               },
             },
             {
-              path: 'AddEditRole/:RoleId?',
-              name: 'AddEditRole',
+              path: "AddEditRole/:RoleId?",
+              name: "AddEditRole",
               component: AddEditRole,
               meta: {
-                description: 'Add/Edit role',
-                label: 'Add/Edit role',
-                permission: 'Role'
-              }
+                description: "Add/Edit role",
+                label: "Add/Edit role",
+                permission: "Role",
+              },
             },
             {
-              path: 'UsersList',
-              name: 'UsersList',
+              path: "UsersList",
+              name: "UsersList",
               component: UsersList,
               meta: {
-                description: 'Users list',
-                label: 'Users list',
-                permission: 'User'
-              }
+                description: "Users list",
+                label: "Users list",
+                permission: "User",
+              },
             },
             {
-              path: 'AddEditUser/:UserId?',
-              name: 'AddEditUser',
+              path: "AddEditUser/:UserId?",
+              name: "AddEditUser",
               component: AddEditUser,
               meta: {
-                description: 'Add/Edit user',
-                label: 'AddEditUser',
-                permission: 'User'
-              }
+                description: "Add/Edit user",
+                label: "AddEditUser",
+                permission: "User",
+              },
             },
             {
-              path: 'UserProfile',
-              name: 'UserProfile',
+              path: "UserProfile",
+              name: "UserProfile",
               component: UserProfile,
               meta: {
-                description: 'Show my profile/Edit user',
-                label: 'User Profile',
-                permission: 'all'
-              }
+                description: "Show my profile/Edit user",
+                label: "User Profile",
+                permission: "all",
+              },
             },
-          ]
+          ],
         },
         {
-          path: '/calculationSheets',
+          path: "/calculationSheets",
           // name: 'calculationSheetList',
           // redirect: 'calculationSheets/list',
           /*meta: {
@@ -652,185 +667,184 @@ export const router = new Router({
           },*/
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'NewCalculationSheet/:CalSheetId?',
-              name: 'NewCalculationSheet',
+              path: "NewCalculationSheet/:CalSheetId?",
+              name: "NewCalculationSheet",
               component: CalculationSheetMaster,
               meta: {
-                description: 'Calculation Sheet Master',
-                label: 'New calculation sheet',
-                permission: 'Calculation Sheet'
-              }
+                description: "Calculation Sheet Master",
+                label: "New calculation sheet",
+                permission: "Calculation Sheet",
+              },
             },
             {
-              path: 'view/:CalSheetId',
-              name: 'viewCalculationSheet',
+              path: "view/:CalSheetId",
+              name: "viewCalculationSheet",
               component: CalcualtionSheetView,
               meta: {
-                description: 'Calculation Sheet Master',
-                label: 'Calculation sheet',
-                permission: 'Calculation Sheet'
-              }
+                description: "Calculation Sheet Master",
+                label: "Calculation sheet",
+                permission: "Calculation Sheet",
+              },
             },
             {
-              path: '/NewCalculationSheet',
-              name: 'createCalcuationSheet',
+              path: "/NewCalculationSheet",
+              name: "createCalcuationSheet",
               component: CalculationSheetMaster,
               meta: {
-                description: 'Calculation sheet master',
-                label: 'New calculation sheet',
-                permission: 'Calculation Sheet'
+                description: "Calculation sheet master",
+                label: "New calculation sheet",
+                permission: "Calculation Sheet",
               },
-              props: true
+              props: true,
             },
             {
-              path: '/',
+              path: "/",
               name: "calculationSheetList",
               component: calculationSheetList,
               meta: {
-                label: 'Calculation sheet list',
-                permission: 'Calculation Sheet'
-              }
-
+                label: "Calculation sheet list",
+                permission: "Calculation Sheet",
+              },
             },
           ],
           meta: {
-            description: 'Calculation sheet  list',
-            label: 'Calculation sheets list ',
-            permission: 'Calculation Sheet'
-          }
+            description: "Calculation sheet  list",
+            label: "Calculation sheets list ",
+            permission: "Calculation Sheet",
+          },
         },
         {
-          path: '/AwardingList',
+          path: "/AwardingList",
           // name: 'awardingList',
-          redirect: 'AwardingList/list',
+          redirect: "AwardingList/list",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: '/newAwardingSheet/:awardingID?',
-              name: 'NewAwardingSheet',
+              path: "/newAwardingSheet/:awardingID?",
+              name: "NewAwardingSheet",
               component: newAwardingSheet,
               meta: {
-                label: 'New awarding sheet',
-                permission: 'Awarding Sheet'
-              }
+                label: "New awarding sheet",
+                permission: "Awarding Sheet",
+              },
             },
             {
-              path: '/AwardingList/list',
+              path: "/AwardingList/list",
               name: "awardingList",
               component: awardingSheetList,
               meta: {
-                label: 'Awarding sheet',
-                permission: 'Awarding Sheet'
-              }
+                label: "Awarding sheet",
+                permission: "Awarding Sheet",
+              },
             },
             {
-              path: 'view/:CalSheetId/:CalSheetType?',
-              name: 'viewAwardingSheet',
+              path: "view/:CalSheetId/:CalSheetType?",
+              name: "viewAwardingSheet",
               component: showAwardingSheet,
               meta: {
-                description: 'Awarding sheet',
-                label: 'Awarding sheets',
-                permission: 'Awarding Sheet'
-              }
+                description: "Awarding sheet",
+                label: "Awarding sheets",
+                permission: "Awarding Sheet",
+              },
             },
           ],
           meta: {
-            description: 'Awarding sheet  list',
-            label: 'Awarding sheet list ',
-            permission: 'Awarding Sheet'
-          }
+            description: "Awarding sheet  list",
+            label: "Awarding sheet list ",
+            permission: "Awarding Sheet",
+          },
         },
         {
-          path: '/priceQuotations',
+          path: "/priceQuotations",
           // name: 'awardingList',
-          redirect: 'priceQuotations/list',
+          redirect: "priceQuotations/list",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'priceQuotation/:quoteID?',
-              name: 'newPriceQuotation',
+              path: "priceQuotation/:quoteID?/:CalSheetId?",
+              name: "newPriceQuotation",
               component: newPriceQuotation,
               meta: {
-                label: 'New price quote',
-                permission: 'Price Quotation'
-              }
+                label: "New price quote",
+                permission: "Price Quotation",
+              },
             },
             {
-              path: 'viewPriceQuotation/:quoteID?',
+              path: "viewPriceQuotation/:quoteID?",
               name: "viewPriceQuotation",
               component: showPriceQuotation,
               meta: {
-                label: 'price quotes',
-                permission: 'Price Quotation'
-              }
+                label: "price quotes",
+                permission: "Price Quotation",
+              },
             },
             {
-              path: '/priceQuotations/list',
+              path: "/priceQuotations/list",
               name: "PriceQuotationsList",
               component: priceQuotationList,
               meta: {
-                label: 'Price quotes ',
-                permission: 'Price Quotation'
-              }
+                label: "Price quotes ",
+                permission: "Price Quotation",
+              },
             },
           ],
           meta: {
-            description: 'Awarding sheet  list',
-            label: 'Price quotation list ',
-            permission: 'Price Quotation'
-          }
+            description: "Awarding sheet  list",
+            label: "Price quotation list ",
+            permission: "Price Quotation",
+          },
         },
         {
-          path: '/items',
-          redirect: 'items/list',
-          name: 'Items Management',
+          path: "/items",
+          redirect: "items/list",
+          name: "Items Management",
           meta: {
-            permission: 'Manual Item'
+            permission: "Manual Item",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'additem/:Id?',
-              name: 'newItem',
+              path: "additem/:Id?",
+              name: "newItem",
               component: Items,
               meta: {
-                description: 'add new item',
-                label: 'add new item',
-                permission: 'Manual Item'
-              }
+                description: "add new item",
+                label: "add new item",
+                permission: "Manual Item",
+              },
             },
             {
-              path: '/items/list',
+              path: "/items/list",
               name: "ItemsList",
               component: ItemsManagmentList,
               meta: {
-                label: 'Items management list',
-                permission: 'Manual Item'
-              }
+                label: "Items management list",
+                permission: "Manual Item",
+              },
             },
-          ]
+          ],
         },
 
         //------Tender-----------
         {
-          path: '/tenderCalculationSheets',
+          path: "/tenderCalculationSheets",
           // name: 'calculationSheetList',
           // redirect: 'calculationSheets/list',
           /*meta: {
@@ -838,61 +852,60 @@ export const router = new Router({
           },*/
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'tenderNewCalculationSheet/:CalSheetId?',
-              name: 'tenderNewCalculationSheet',
+              path: "tenderNewCalculationSheet/:CalSheetId?",
+              name: "tenderNewCalculationSheet",
               component: tenderCalculationSheetMaster,
               meta: {
-                description: 'Tender Calculation Sheet Master',
-                label: 'Tender New calculation sheet',
-                permission: 'Tender Calculation Sheet'
-              }
+                description: "Tender Calculation Sheet Master",
+                label: "Tender New calculation sheet",
+                permission: "Tender Calculation Sheet",
+              },
             },
             {
-              path: 'view/:CalSheetId',
-              name: 'tenderViewCalculationSheet',
+              path: "view/:CalSheetId",
+              name: "tenderViewCalculationSheet",
               component: tenderCalcualtionSheetView,
               meta: {
-                description: 'Tender Calculation Sheet Master',
-                label: 'Tender Calculation sheet',
-                permission: 'Tender Calculation Sheet'
-              }
+                description: "Tender Calculation Sheet Master",
+                label: "Tender Calculation sheet",
+                permission: "Tender Calculation Sheet",
+              },
             },
             {
-              path: '/NewTenderCalculationSheet',
-              name: 'tenderCreateCalcuationSheet',
+              path: "/NewTenderCalculationSheet",
+              name: "tenderCreateCalcuationSheet",
               component: tenderCalculationSheetMaster,
               meta: {
-                description: 'Tender Calculation sheet master',
-                label: 'New Tender calculation sheet',
-                permission: 'Tender Calculation Sheet'
+                description: "Tender Calculation sheet master",
+                label: "New Tender calculation sheet",
+                permission: "Tender Calculation Sheet",
               },
-              props: true
+              props: true,
             },
             {
-              path: '/',
+              path: "/",
               name: "tenderCalculationSheetList",
               component: tenderCalculationSheetList,
               meta: {
-                label: 'Calculation sheet list',
-                permission: 'Tender Calculation Sheet'
-              }
-
+                label: "Calculation sheet list",
+                permission: "Tender Calculation Sheet",
+              },
             },
           ],
           meta: {
-            description: 'Tender Calculation sheet  list',
-            label: 'Tender Calculation sheets list ',
-            permission: 'Tender Calculation Sheet'
-          }
+            description: "Tender Calculation sheet  list",
+            label: "Tender Calculation sheets list ",
+            permission: "Tender Calculation Sheet",
+          },
         },
         //------Lab-----------
         {
-          path: '/labCalculationSheets',
+          path: "/labCalculationSheets",
           // name: 'calculationSheetList',
           // redirect: 'calculationSheets/list',
           /*meta: {
@@ -900,393 +913,394 @@ export const router = new Router({
           },*/
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'labNewCalculationSheet/:CalSheetId?',
-              name: 'labNewCalculationSheet',
+              path: "labNewCalculationSheet/:CalSheetId?",
+              name: "labNewCalculationSheet",
               component: labCalculationSheetMaster,
               meta: {
-                description: 'Lab Calculation Sheet Master',
-                label: 'Lab New calculation sheet',
-                permission: 'Lab Calculation Sheet'
-              }
+                description: "Lab Calculation Sheet Master",
+                label: "Lab New calculation sheet",
+                permission: "Lab Calculation Sheet",
+              },
             },
             {
-              path: 'view/:CalSheetId',
-              name: 'LabViewCalculationSheet',
+              path: "view/:CalSheetId",
+              name: "LabViewCalculationSheet",
               component: labCalcualtionSheetView,
               meta: {
-                description: 'Lab Calculation Sheet Master',
-                label: 'Lab Calculation sheet',
-                permission: 'Lab Calculation Sheet'
-              }
+                description: "Lab Calculation Sheet Master",
+                label: "Lab Calculation sheet",
+                permission: "Lab Calculation Sheet",
+              },
             },
             {
-              path: '/NewLabCalculationSheet',
-              name: 'labCreateCalcuationSheet',
+              path: "/NewLabCalculationSheet",
+              name: "labCreateCalcuationSheet",
               component: labCalculationSheetMaster,
               meta: {
-                description: 'Lab Calculation sheet master',
-                label: 'New Lab calculation sheet',
-                permission: 'Lab Calculation Sheet'
+                description: "Lab Calculation sheet master",
+                label: "New Lab calculation sheet",
+                permission: "Lab Calculation Sheet",
               },
-              props: true
+              props: true,
             },
             {
-              path: '/',
+              path: "/",
               name: "labCalculationSheetList",
               component: labCalculationSheetList,
               meta: {
-                label: 'Calculation sheet list',
-                permission: 'Lab Calculation Sheet'
-              }
-
+                label: "Calculation sheet list",
+                permission: "Lab Calculation Sheet",
+              },
             },
           ],
           meta: {
-            description: 'Lab Calculation sheet  list',
-            label: 'Lab Calculation sheets list ',
-            permission: 'Lab Calculation Sheet'
-          }
+            description: "Lab Calculation sheet  list",
+            label: "Lab Calculation sheets list ",
+            permission: "Lab Calculation Sheet",
+          },
         },
         {
-          path: '/tenderAwardingList',
+          path: "/tenderAwardingList",
           // name: 'awardingList',
-          redirect: 'tenderAwardingList/list',
+          redirect: "tenderAwardingList/list",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: '/tenderNewAwardingSheet/:awardingID?',
-              name: 'tenderNewAwardingSheet',
+              path: "/tenderNewAwardingSheet/:awardingID?",
+              name: "tenderNewAwardingSheet",
               component: newAwardingSheet,
               meta: {
-                label: 'Tender New awarding sheet',
-                permission: 'Tender Awarding Sheet'
-              }
+                label: "Tender New awarding sheet",
+                permission: "Tender Awarding Sheet",
+              },
             },
             {
-              path: '/tenderAwardingList/list',
+              path: "/tenderAwardingList/list",
               name: "tenderAwardingList",
               component: tenderAwardingSheetList,
               meta: {
-                label: 'Tender Awarding sheet',
-                permission: 'Tender Awarding Sheet'
-              }
+                label: "Tender Awarding sheet",
+                permission: "Tender Awarding Sheet",
+              },
             },
             {
-              path: 'tenderView/:CalSheetId?',
-              name: 'tenderViewAwardingSheet',
+              path: "tenderView/:CalSheetId?",
+              name: "tenderViewAwardingSheet",
               component: tenderShowAwardingSheet,
               meta: {
-                description: 'Tender Awarding sheet',
-                label: 'Tender Awarding sheets',
-                permission: 'Tender Awarding Sheet'
-              }
+                description: "Tender Awarding sheet",
+                label: "Tender Awarding sheets",
+                permission: "Tender Awarding Sheet",
+              },
             },
           ],
           meta: {
-            description: 'Tender Awarding sheet  list',
-            label: 'Tender Awarding sheet list ',
-            permission: 'Tender Awarding Sheet'
-          }
+            description: "Tender Awarding sheet  list",
+            label: "Tender Awarding sheet list ",
+            permission: "Tender Awarding Sheet",
+          },
         },
         {
-          path: '/tenderPriceQuotations',
+          path: "/tenderPriceQuotations",
           // name: 'awardingList',
-          redirect: 'tenderPriceQuotations/list',
+          redirect: "tenderPriceQuotations/list",
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'tenderPriceQuotation/:quoteID?',
-              name: 'tenderNewPriceQuotation',
+              path: "tenderPriceQuotation/:quoteID?",
+              name: "tenderNewPriceQuotation",
               component: tenderNewPriceQuotation,
               meta: {
-                label: 'New price quote',
-                permission: 'Price Quotation'
-              }
+                label: "New price quote",
+                permission: "Price Quotation",
+              },
             },
             {
-              path: 'tenderViewPriceQuotation/:quoteID?',
+              path: "tenderViewPriceQuotation/:quoteID?",
               name: "tenderViewPriceQuotation",
               component: tenderShowPriceQuotation,
               meta: {
-                label: 'tender price quotes',
-                permission: 'Tender Price Quotation'
-              }
+                label: "tender price quotes",
+                permission: "Tender Price Quotation",
+              },
             },
             {
-              path: '/tenderPriceQuotations/list',
+              path: "/tenderPriceQuotations/list",
               name: "tenderPriceQuotationsList",
               component: tenderPriceQuotationList,
               meta: {
-                label: 'Tender Price quotes ',
-                permission: 'Tender Price Quotation'
-              }
+                label: "Tender Price quotes ",
+                permission: "Tender Price Quotation",
+              },
             },
           ],
           meta: {
-            description: 'Tender Awarding sheet  list',
-            label: 'Tender Price quotation list ',
-            permission: 'Tender Price Quotation'
-          }
+            description: "Tender Awarding sheet  list",
+            label: "Tender Price quotation list ",
+            permission: "Tender Price Quotation",
+          },
         },
         {
-          path: '/tenderItems',
-          redirect: 'tenderItems/list',
-          name: 'Tender Items Management',
+          path: "/tenderItems",
+          redirect: "tenderItems/list",
+          name: "Tender Items Management",
           meta: {
-            permission: 'Tender Manual Item'
+            permission: "Tender Manual Item",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'additem/:Id?',
-              name: 'tenderNewItem',
+              path: "additem/:Id?",
+              name: "tenderNewItem",
               component: tenderItems,
               meta: {
-                description: 'add new item',
-                label: 'add new item',
-                permission: 'Manual Item'
-              }
+                description: "add new item",
+                label: "add new item",
+                permission: "Manual Item",
+              },
             },
             {
-              path: '/items/list',
+              path: "/items/list",
               name: "tenderItemsList",
               component: tenderItemsManagmentList,
               meta: {
-                label: 'Items management list',
-                permission: 'Manual Item'
-              }
+                label: "Items management list",
+                permission: "Manual Item",
+              },
             },
-          ]
+          ],
         },
         //---------
         {
-          path: '/items-group',
-          redirect: 'items-group/ItemsGroupList',
-          name: 'Items configuration',
+          path: "/items-group",
+          redirect: "items-group/ItemsGroupList",
+          name: "Items configuration",
           meta: {
-            permission: 'Items'
+            permission: "Items",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'ItemsGroupList',
-              name: 'ItemsGroupList',
+              path: "ItemsGroupList",
+              name: "ItemsGroupList",
               component: ItemsGroupList,
               meta: {
-                description: 'Items Group List',
-                label: 'Items group list',
-                permission: 'Items'
-              }
+                description: "Items Group List",
+                label: "Items group list",
+                permission: "Items",
+              },
             },
             {
-              path: 'ItemsGroupConfiguration/:GroupId?',
-              name: 'ItemsGroupConfiguration',
+              path: "ItemsGroupConfiguration/:GroupId?",
+              name: "ItemsGroupConfiguration",
               component: ItemsGroupConfiguration,
               meta: {
-                description: 'Add/Edit Item Group',
-                label: 'Items group list',
-                permission: 'Items'
-              }
-            }
-          ]
+                description: "Add/Edit Item Group",
+                label: "Items group list",
+                permission: "Items",
+              },
+            },
+          ],
         },
         //--tender---
         {
-          path: '/tender-items-group',
-          redirect: 'tender-items-group/ItemsGroupList',
-          name: 'Tender Items configuration',
+          path: "/tender-items-group",
+          redirect: "tender-items-group/ItemsGroupList",
+          name: "Tender Items configuration",
           meta: {
-            permission: 'TenderItems'
+            permission: "TenderItems",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'tenderItemsGroupList',
-              name: 'tenderItemsGroupList',
+              path: "tenderItemsGroupList",
+              name: "tenderItemsGroupList",
               component: tenderItemsGroupList,
               meta: {
-                description: 'Tender Items Group List',
-                label: 'Tender Items group list',
-                permission: 'TenderItems'
-              }
+                description: "Tender Items Group List",
+                label: "Tender Items group list",
+                permission: "TenderItems",
+              },
             },
             {
-              path: 'tenderItemsGroupConfiguration/:GroupId?',
-              name: 'tenderItemsGroupConfiguration',
+              path: "tenderItemsGroupConfiguration/:GroupId?",
+              name: "tenderItemsGroupConfiguration",
               component: tenderItemsGroupConfiguration,
               meta: {
-                description: 'Add/Edit Tender Item Group',
-                label: 'Tender Items group list',
-                permission: 'TenderItems'
-              }
-            }
-          ]
+                description: "Add/Edit Tender Item Group",
+                label: "Tender Items group list",
+                permission: "TenderItems",
+              },
+            },
+          ],
         },
         //-------------
         {
-          path: 'workflow-definition',
-          redirect: '/workflow-definition/WorkflowDefinitionList',
-          name: 'workflow-definition',
+          path: "workflow-definition",
+          redirect: "/workflow-definition/WorkflowDefinitionList",
+          name: "workflow-definition",
           meta: {
-            permission: 'Workflow'
+            permission: "Workflow",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'WorkflowDefinitionList',
-              name: 'WorkflowDefinitionList',
+              path: "WorkflowDefinitionList",
+              name: "WorkflowDefinitionList",
               component: WorkflowDefinitionList,
               meta: {
-                label: 'Workflow definition list',
-                description: 'Workflow definition list',
-                permission: 'Workflow'
-              }
+                label: "Workflow definition list",
+                description: "Workflow definition list",
+                permission: "Workflow",
+              },
             },
             {
-              path: 'AddEditWorkflow/:WorkflowId?',
-              name: 'AddEditWorkflow',
+              path: "AddEditWorkflow/:WorkflowId?",
+              name: "AddEditWorkflow",
               component: AddEditWorkflow,
               meta: {
-                label: 'Add/Edit Workflow',
-                description: 'Add/Edit Workflow',
-                permission: 'Workflow'
-              }
-            }, {
-              path: 'WorkflowLog/:calculationSheetId',
-              name: 'WorkflowLog',
+                label: "Add/Edit Workflow",
+                description: "Add/Edit Workflow",
+                permission: "Workflow",
+              },
+            },
+            {
+              path: "WorkflowLog/:calculationSheetId",
+              name: "WorkflowLog",
               component: WorkflowLog,
               meta: {
-                label: 'Workflow log',
-                description: 'Workflow log',
-                permission: 'all'
-              }
+                label: "Workflow log",
+                description: "Workflow log",
+                permission: "all",
+              },
             },
-
-          ]
+          ],
         },
 
         //----Tender--------
         {
-          path: 'tender-workflow-definition',
-          redirect: '/tender-workflow-definition/WorkflowDefinitionList',
-          name: 'tender-workflow-definition',
+          path: "tender-workflow-definition",
+          redirect: "/tender-workflow-definition/WorkflowDefinitionList",
+          name: "tender-workflow-definition",
           meta: {
-            permission: 'Workflow'
+            permission: "Workflow",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'tenderWorkflowDefinitionList',
-              name: 'tenderWorkflowDefinitionList',
+              path: "tenderWorkflowDefinitionList",
+              name: "tenderWorkflowDefinitionList",
               component: tenderWorkflowDefinitionList,
               meta: {
-                label: 'Tender Workflow definition list',
-                description: 'Tender Workflow definition list',
-                permission: 'tenderWorkflow'
-              }
+                label: "Tender Workflow definition list",
+                description: "Tender Workflow definition list",
+                permission: "tenderWorkflow",
+              },
             },
             {
-              path: 'tenderAddEditWorkflow/:WorkflowId?',
-              name: 'tenderAddEditWorkflow',
+              path: "tenderAddEditWorkflow/:WorkflowId?",
+              name: "tenderAddEditWorkflow",
               component: tenderAddEditWorkflow,
               meta: {
-                label: 'Add/Edit Workflow',
-                description: 'Add/Edit Workflow',
-                permission: 'tenderWorkflow'
-              }
-            }, {
-              path: 'tenderWorkflowLog/:tenderCalculationSheetId',
-              name: 'tenderWorkflowLog',
+                label: "Add/Edit Workflow",
+                description: "Add/Edit Workflow",
+                permission: "tenderWorkflow",
+              },
+            },
+            {
+              path: "tenderWorkflowLog/:tenderCalculationSheetId",
+              name: "tenderWorkflowLog",
               component: tenderWorkflowLog,
               meta: {
-                label: 'Tender Workflow log',
-                description: 'Tender Workflow log',
-                permission: 'all'
-              }
+                label: "Tender Workflow log",
+                description: "Tender Workflow log",
+                permission: "all",
+              },
             },
-
-          ]
+          ],
         },
         //------------------
-        
+
         //----Lab--------
         {
-          path: 'lab-workflow-definition',
+          path: "lab-workflow-definition",
           // redirect: '/lab-workflow-definition/WorkflowDefinitionList',
           // name: 'lab-workflow-definition',
           meta: {
-            permission: 'Workflow'
+            permission: "Workflow",
           },
           component: {
             render(c) {
-              return c('router-view')
-            }
+              return c("router-view");
+            },
           },
           children: [
             {
-              path: 'labWorkflowLog/:labCalculationSheetId',
-              name: 'labWorkflowLog',
+              path: "labWorkflowLog/:labCalculationSheetId",
+              name: "labWorkflowLog",
               component: labWorkflowLog,
               meta: {
-                label: 'Lab Workflow log',
-                description: 'Lab Workflow log',
-                permission: 'all'
-              }
+                label: "Lab Workflow log",
+                description: "Lab Workflow log",
+                permission: "all",
+              },
             },
-
-          ]
+          ],
         },
         //------------------
-
-      ]
+      ],
     },
     // {
     //   path: '404',
     //   name: 'Page404',
     //   component: Page404
     // }
-  ]
+  ],
 });
 
 const checkToken = () => {
-  if (localStorage.getItem('token') == (null || '' || 'null') || store.getters.getToken == (null || 'null')) {
+  if (
+    localStorage.getItem("token") == (null || "" || "null") ||
+    store.getters.getToken == (null || "null")
+  ) {
     return false;
-  }
-  else {
-    var tokenExpireDate = localStorage.getItem('TokenExpireDate') ? localStorage.getItem('TokenExpireDate') : null;
+  } else {
+    var tokenExpireDate = localStorage.getItem("TokenExpireDate")
+      ? localStorage.getItem("TokenExpireDate")
+      : null;
     if (tokenExpireDate) {
       var duration = moment.duration(moment(tokenExpireDate).diff(moment()));
       var hours = duration.asHours();
@@ -1299,46 +1313,70 @@ const checkToken = () => {
       return false;
     }
   }
-}
+};
 
 router.beforeEach((to, from, next) => {
   //calender:
   //  /events/calendar
 
-  //calculationSheet: 
+  //calculationSheet:
   //  /calculationSheets
   //  /calculationSheets/NewCalculationSheet
   //  /calculationSheets/view
   //  /workflow-definition/WorkflowLog
 
-  if (to.path != "/login" && to.path != "/forget" && to.path != "/reset" && !to.path.includes('Verify')) {
+  if (
+    to.path != "/login" &&
+    to.path != "/forget" &&
+    to.path != "/reset" &&
+    !to.path.includes("Verify")
+  ) {
     if (checkToken()) {
       next();
       //  return;
-      if (to.path.includes('pages/404')) {
-        next()
+      if (to.path.includes("pages/404")) {
+        next();
       } else {
-        if (to.meta.permission == 'all') {
+        if (to.meta.permission == "all") {
           next();
-        }
-        else if (checkPagePermession(to.meta.permission)) {
-          if (to.path == '/NewCalculationSheet' && from.path.includes('calculationSheets/NewCalculationSheet/')) {
-            router.replace({ path: '/calculationSheets/NewCalculationSheet' }, () => {
-              router.go(0)
-            })
-          } else if (to.path == '/NewTenderCalculationSheet' && from.path.includes('tenderCalculationSheets/tenderNewCalculationSheet')) {
-            router.replace({ path: '/tenderCalculationSheets/tenderNewCalculationSheet' }, () => {
-              router.go(0)
-            })
-          } else if (to.path == '/NewLabCalculationSheet' && from.path.includes('labCalculationSheets/labNewCalculationSheet')) {
-            router.replace({ path: '/labCalculationSheets/labNewCalculationSheet' }, () => {
-              router.go(0)
-            })
+        } else if (checkPagePermession(to.meta.permission)) {
+          if (
+            to.path == "/NewCalculationSheet" &&
+            from.path.includes("calculationSheets/NewCalculationSheet/")
+          ) {
+            router.replace(
+              { path: "/calculationSheets/NewCalculationSheet" },
+              () => {
+                router.go(0);
+              }
+            );
+          } else if (
+            to.path == "/NewTenderCalculationSheet" &&
+            from.path.includes(
+              "tenderCalculationSheets/tenderNewCalculationSheet"
+            )
+          ) {
+            router.replace(
+              { path: "/tenderCalculationSheets/tenderNewCalculationSheet" },
+              () => {
+                router.go(0);
+              }
+            );
+          } else if (
+            to.path == "/NewLabCalculationSheet" &&
+            from.path.includes("labCalculationSheets/labNewCalculationSheet")
+          ) {
+            router.replace(
+              { path: "/labCalculationSheets/labNewCalculationSheet" },
+              () => {
+                router.go(0);
+              }
+            );
           } else {
             next();
           }
         } else {
-          next({ name: 'Pages' })
+          next({ name: "Pages" });
         }
       }
       // console.log(checkPagePermession(to.meta.permission))
@@ -1355,8 +1393,8 @@ router.beforeEach((to, from, next) => {
       window.localStorage.setItem("user", null);
       window.localStorage.setItem("token", null);
       window.localStorage.setItem("firebaseToken", null);
-      
-      next({ name: 'login', query: { from: to.path } })
+
+      next({ name: "login", query: { from: to.path } });
       // if (to.path.includes('calculationSheets/NewCalculationSheet')) {
       //     next({ name: 'login', query: { from: to.path } })
       // } else {
@@ -1364,15 +1402,13 @@ router.beforeEach((to, from, next) => {
       // }
       // router.push('/login');
     }
-  } else if (to.path == '/login') {
+  } else if (to.path == "/login") {
     next();
-  } else if (to.path == '/forget') {
+  } else if (to.path == "/forget") {
     next();
-  }
-  else if (to.path == '/reset') {
+  } else if (to.path == "/reset") {
     next();
-  }
-  else if (to.path.includes('Verify')) {
+  } else if (to.path.includes("Verify")) {
     next();
   }
 });

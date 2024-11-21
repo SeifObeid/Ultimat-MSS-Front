@@ -704,23 +704,23 @@
                         size="mini"
                         style="width: 100%">
                         <el-table-column type="index" width="50"></el-table-column>
-                        <el-table-column sortable prop="code" label="Item code" width="180"></el-table-column>
+                        <el-table-column sortable prop="code" label="Item code" width="140"></el-table-column>
 
                         <el-table-column sortable prop="name" label="Item description" width="180"></el-table-column>
-                        <el-table-column sortable prop="vendor" label="Company" width="180"></el-table-column>
-                        <el-table-column sortable prop="winningProbability" label="WinProb" width="120">
+                        <el-table-column sortable prop="vendor" label="Company" width="120"></el-table-column>
+                        <el-table-column sortable prop="winningProbability" label="WinProb" width="100">
                            <template slot-scope="scope">
                              <span v-if="scope.row.WinProb">{{$t('Yes')}}</span>
                              <span v-else>{{$t('No')}}</span>
                            </template>
                         </el-table-column>
                         
-                        <el-table-column sortable prop="onHandPrice" label="OH price" width="140"></el-table-column>
-                        <el-table-column sortable prop="onHandQuantity" label="OH Qty" width="140"></el-table-column>
-                        <el-table-column sortable prop="costTypeLookup.name" label="Cost type " width="120"></el-table-column>
+                        <el-table-column sortable prop="onHandPrice" label="OH price" width="70"></el-table-column>
+                        <el-table-column sortable prop="onHandQuantity" label="OH Qty" width="80"></el-table-column>
+                        <el-table-column sortable prop="costTypeLookup.name" label="Cost type " width="100"></el-table-column>
                         
-                        <el-table-column sortable prop="shelfLife" label="Shelf life" width="120"></el-table-column>
-                        <el-table-column sortable prop="countryofOriginNames" label="Country of origin" width="200"></el-table-column>
+                        <el-table-column sortable prop="shelfLife" label="Shelf life" width="100"></el-table-column>
+                        <el-table-column sortable prop="countryofOriginNames" label="Country of origin" width="160"></el-table-column>
                       
                         <el-table-column sortable prop="tenderUnit" label="Tender Unit" width="120">
                            <template slot-scope="scope">
