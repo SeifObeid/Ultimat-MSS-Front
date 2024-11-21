@@ -1,4 +1,5 @@
 <template>
+  
   <b-card class="card card-accent-primary" no-body v-loading.fullscreen.lock="fullscreenLoading">
     <div slot="header">
       {{$t("Awardingsheet")}} / {{$t('SearchFields')}}
