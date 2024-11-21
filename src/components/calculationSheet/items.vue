@@ -128,7 +128,7 @@
                     value="0"
                     name="vatValue1"
                     class="form-control"
-                    autocomplete="off"
+                    autocomplete="off" 
                   />
                 </div>
               </div>
