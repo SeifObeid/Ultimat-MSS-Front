@@ -31,7 +31,7 @@
         class="btn btn-success"
         :to="{
           name: 'newPriceQuotation',
-          params: { CalSheetId: BasicInfoObj.id },
+          params: { CalSheetId: BasicInfoObj.id, quoteID: -1 },
         }"
       >
         <i class="fa fa-edit"></i>
@@ -1267,7 +1267,7 @@
                           sortable
                           prop="code"
                           label="Item Code"
-                          width="180"
+                          width="150"
                         ></el-table-column>
 
                         <el-table-column
@@ -1280,25 +1280,25 @@
                           sortable
                           prop="vendor"
                           label="Vendor"
-                          width="180"
+                          width="120"
                         ></el-table-column>
                         <el-table-column
                           sortable
                           prop="onHandPrice"
                           label="OH price"
-                          width="140"
+                          width="120"
                         ></el-table-column>
                         <el-table-column
                           sortable
                           prop="onHandQuantity"
                           label="OH Qty"
-                          width="140"
+                          width="120"
                         ></el-table-column>
                         <el-table-column
                           sortable
                           prop="cost"
                           label="Cost"
-                          width="140"
+                          width="80"
                         ></el-table-column>
                         <el-table-column
                           sortable
@@ -1311,24 +1311,26 @@
                           sortable
                           prop="discount1"
                           label="Disc1%"
-                          width="120"
+                          width="70"
                         ></el-table-column>
                         <el-table-column
                           sortable
                           prop="discount2"
                           label="Disc2%"
-                          width="120"
+                          width="70"
                         ></el-table-column>
                         <el-table-column label="Cost type" width="200">
                           <template #default="{ row }">
-                            {{ row.costTypeLookup?row.costTypeLookup.name:"" }}
+                            {{
+                              row.costTypeLookup ? row.costTypeLookup.name : ""
+                            }}
                           </template>
                         </el-table-column>
                         <el-table-column
                           sortable
                           prop="shipment"
                           label="S&C %"
-                          width="120"
+                          width="70"
                         ></el-table-column>
                         <el-table-column
                           sortable
@@ -1340,26 +1342,26 @@
                           sortable
                           prop="foC_Value"
                           label="Disc %"
-                          width="120"
+                          width="70"
                         ></el-table-column>
                         <el-table-column
                           sortable
                           prop="grossMargin"
                           label="GM%"
-                          width="120"
+                          width="70"
                         ></el-table-column>
 
                         <el-table-column
                           sortable
                           prop="unitPrice"
                           label="Unit price"
-                          width="120"
+                          width="70"
                         ></el-table-column>
                         <el-table-column
                           sortable
                           prop="quantity"
                           label="Quantity"
-                          width="120"
+                          width="90"
                         ></el-table-column>
                         <el-table-column
                           sortable
@@ -1371,14 +1373,14 @@
                           sortable
                           prop="grossMarginValue"
                           label="Gross margin"
-                          width="160"
+                          width="120"
                         ></el-table-column>
 
                         <el-table-column
                           sortable
                           prop="note"
                           label="note"
-                          width="120"
+                          width="100"
                         ></el-table-column>
                       </el-table>
                     </div>
@@ -1487,7 +1489,11 @@
 
                             <el-table-column label="Cost type" width="200">
                               <template #default="{ row }">
-                                {{ row.costTypeLookup?row.costTypeLookup.name:"" }}
+                                {{
+                                  row.costTypeLookup
+                                    ? row.costTypeLookup.name
+                                    : ""
+                                }}
                               </template>
                             </el-table-column>
 
@@ -1680,7 +1686,11 @@
 
                               <el-table-column label="Cost type" width="200">
                                 <template #default="{ row }">
-                                  {{ row.costTypeLookup?row.costTypeLookup.name:"" }}
+                                  {{
+                                    row.costTypeLookup
+                                      ? row.costTypeLookup.name
+                                      : ""
+                                  }}
                                 </template>
                               </el-table-column>
                               <el-table-column
@@ -1853,9 +1863,16 @@
                                       width="120"
                                     ></el-table-column>
 
-                                    <el-table-column label="Cost type" width="200">
+                                    <el-table-column
+                                      label="Cost type"
+                                      width="200"
+                                    >
                                       <template #default="{ row }">
-                                        {{ row.costTypeLookup?row.costTypeLookup.name:"" }}
+                                        {{
+                                          row.costTypeLookup
+                                            ? row.costTypeLookup.name
+                                            : ""
+                                        }}
                                       </template>
                                     </el-table-column>
                                     <el-table-column

@@ -361,7 +361,7 @@
                         <el-table-column
                           prop="Name"
                           label="Item Code"
-                          width="180"
+                          width="140"
                           fixed
                         >
                           <template slot-scope="scope">
@@ -409,7 +409,7 @@
                         <el-table-column
                           prop="Name"
                           label="MSS Name"
-                          width="280"
+                          width="240"
                           fixed
                         >
                           <template slot-scope="scope">
@@ -457,7 +457,7 @@
                         <el-table-column
                           prop="vendor"
                           label="Company"
-                          width="180"
+                          width="120"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -488,7 +488,7 @@
                         <el-table-column
                           prop="onHandPrice"
                           label="OH price"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -512,7 +512,7 @@
                         <el-table-column
                           prop="onHandQuantity"
                           label="OH Qty"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -613,7 +613,7 @@
                         <el-table-column
                           prop="shelfLife"
                           label="Shelf Life"
-                          width="140"
+                          width="120"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -1306,7 +1306,7 @@
 
                             <el-table-column type="index" width="40" fixed></el-table-column>
 
-                               <el-table-column prop="Name" label="Item Code" width="180" fixed>
+                               <el-table-column prop="Name" label="Item Code" width="140" fixed>
                         <template slot-scope="scope">
                             <b-row>
                               <b-col class="pr-0">
@@ -1349,7 +1349,7 @@
                         </template>
                         </el-table-column>
 
-                        <el-table-column prop="Name" label="MSS Name" width="280" fixed>
+                        <el-table-column prop="Name" label="MSS Name" width="240" fixed>
                             <template slot-scope="scope">
                               <b-row>
                               <b-col class="pr-0">
@@ -1393,7 +1393,7 @@
                         </el-table-column>
 
 
-                           <el-table-column prop="vendor" label="Company" width="180">
+                           <el-table-column prop="vendor" label="Company" width="120">
                             <template slot-scope="scope">
                                 <el-input  readonly v-model="scope.row.vendor" disabled size="mini" autocomplete="off">
                                 
@@ -1407,7 +1407,7 @@
                             </template>
                         </el-table-column>
 
-                         <el-table-column prop="onHandPrice" label="OH price" width="120">
+                         <el-table-column prop="onHandPrice" label="OH price" width="100">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.onHandPrice" size="mini"  disabled autocomplete="off">
                                 
@@ -1423,7 +1423,7 @@
                     </template>
                         </el-table-column> -->
 
-                        <el-table-column prop="onHandQuantity" label="OH Qty" width="120">
+                        <el-table-column prop="onHandQuantity" label="OH Qty" width="100">
                         <template slot-scope="scope">
                             <el-input v-model="scope.row.onHandQuantity" size="mini"  disabled autocomplete="off">
                             
@@ -1499,7 +1499,7 @@
                         </el-table-column>-->
 
 
-                        <el-table-column prop="shelfLife" label="Shelf Life" width="140">
+                        <el-table-column prop="shelfLife" label="Shelf Life" width="120">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.shelfLife" size="mini" autocomplete="off">
                                 
@@ -1949,7 +1949,7 @@
 
                               <el-table-column type="index" width="40" fixed></el-table-column>
                              
-                    <el-table-column prop="Name" label="Item Code" width="180" fixed>
+                    <el-table-column prop="Name" label="Item Code" width="140" fixed>
                         <template slot-scope="scope">
                             <b-row>
                               <b-col class="pr-0">
@@ -1992,7 +1992,7 @@
                         </template>
                         </el-table-column>
 
-                        <el-table-column prop="Name" label="MSS Name" width="280" fixed>
+                        <el-table-column prop="Name" label="MSS Name" width="240" fixed>
                             <template slot-scope="scope">
                               <b-row>
                               <b-col class="pr-0">
@@ -2036,7 +2036,7 @@
                         </el-table-column>
 
 
-                           <el-table-column prop="vendor" label="Company" width="180">
+                           <el-table-column prop="vendor" label="Company" width="120">
                             <template slot-scope="scope">
                                 <el-input  readonly v-model="scope.row.vendor" disabled size="mini" autocomplete="off">
                                 
@@ -2050,7 +2050,7 @@
                             </template>
                         </el-table-column>
 
-                         <el-table-column prop="onHandPrice" label="OH price" width="120">
+                         <el-table-column prop="onHandPrice" label="OH price" width="100">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.onHandPrice" size="mini"  disabled autocomplete="off">
                                 
@@ -2066,7 +2066,7 @@
                     </template>
                         </el-table-column> -->
 
-                        <el-table-column prop="onHandQuantity" label="OH Qty" width="120">
+                        <el-table-column prop="onHandQuantity" label="OH Qty" width="100">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.onHandQuantity" size="mini"  disabled autocomplete="off">
                                 
@@ -2142,7 +2142,7 @@
                         </el-table-column>-->
 
 
-                        <el-table-column prop="shelfLife" label="Shelf Life" width="140">
+                        <el-table-column prop="shelfLife" label="Shelf Life" width="120">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.shelfLife" size="mini" autocomplete="off">
                                 
@@ -2587,7 +2587,7 @@
 
                                   <el-table-column type="index" width="40" fixed></el-table-column>
 
-                         <el-table-column prop="Name" label="Item Code" width="180" fixed>
+                         <el-table-column prop="Name" label="Item Code" width="140" fixed>
                             <template slot-scope="scope">
                                 <b-row>
                               <b-col class="pr-0">
@@ -2630,7 +2630,7 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column prop="Name" label="MSS Name" width="280" fixed>
+                        <el-table-column prop="Name" label="MSS Name" width="240" fixed>
                             <template slot-scope="scope">
                               <b-row>
                               <b-col class="pr-0">
@@ -2674,7 +2674,7 @@
                         </el-table-column>
 
 
-                           <el-table-column prop="vendor" label="Company" width="180">
+                           <el-table-column prop="vendor" label="Company" width="120">
                             <template slot-scope="scope">
                                 <el-input  readonly v-model="scope.row.vendor" disabled size="mini" autocomplete="off">
                                 
@@ -2688,7 +2688,7 @@
                             </template>
                         </el-table-column>
 
-                         <el-table-column prop="onHandPrice" label="OH price" width="120">
+                         <el-table-column prop="onHandPrice" label="OH price" width="100">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.onHandPrice" size="mini"  disabled autocomplete="off">
                                 
@@ -2704,7 +2704,7 @@
                     </template>
                         </el-table-column> -->
 
-                        <el-table-column prop="onHandQuantity" label="OH Qty" width="120">
+                        <el-table-column prop="onHandQuantity" label="OH Qty" width="100">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.onHandQuantity" size="mini"  disabled autocomplete="off">
                                 
@@ -2780,7 +2780,7 @@
                         </el-table-column> -->
 
 
-                        <el-table-column prop="shelfLife" label="Shelf Life" width="140">
+                        <el-table-column prop="shelfLife" label="Shelf Life" width="120">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.shelfLife" size="mini" autocomplete="off">
                                 

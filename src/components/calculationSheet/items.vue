@@ -693,7 +693,7 @@
                         <el-table-column
                           prop="Name"
                           label="Item code"
-                          width="180"
+                          width="150"
                           fixed
                         >
                           <template slot-scope="scope">
@@ -739,7 +739,7 @@
                         <el-table-column
                           prop="Name"
                           label="item description"
-                          width="280"
+                          width="240"
                           fixed
                         >
                           <template slot-scope="scope">
@@ -786,7 +786,7 @@
                         <el-table-column
                           prop="vendor"
                           label="Vendor"
-                          width="180"
+                          width="120"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -802,7 +802,7 @@
                         <el-table-column
                           prop="onHandPrice"
                           label="OH price"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -824,7 +824,7 @@
                         <el-table-column
                           prop="onHandQuantity"
                           label="OH Qty"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -889,7 +889,7 @@
                         <el-table-column
                           prop="discount1"
                           label="Disc1%"
-                          width="120"
+                          width="70"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -905,7 +905,7 @@
                         <el-table-column
                           prop="discount2"
                           label="Disc2%"
-                          width="120"
+                          width="70"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -921,7 +921,7 @@
                         <el-table-column
                           prop="costType"
                           label="Cost type "
-                          width="120"
+                          width="110"
                         >
                           <template slot-scope="scope">
                             <el-select
@@ -944,7 +944,7 @@
                         <el-table-column
                           prop="shipment"
                           label="S&C%"
-                          width="120"
+                          width="70"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -989,7 +989,7 @@
                         <el-table-column
                           prop="foc"
                           label="Discount"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <label class="form-checkbox pb-1"></label>
@@ -1005,7 +1005,7 @@
                         <el-table-column
                           prop="foC_Value"
                           label="Disc %"
-                          width="150"
+                          width="70"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -1021,7 +1021,7 @@
                         <el-table-column
                           prop="grossMargin"
                           label="GM%"
-                          width="120"
+                          width="70"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -1039,7 +1039,7 @@
                         <el-table-column
                           prop="unitPrice"
                           label="Unit price"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -1066,7 +1066,7 @@
                         <el-table-column
                           prop="Quantity"
                           label="Quantity"
-                          width="120"
+                          width="100"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -1081,7 +1081,7 @@
                         <el-table-column
                           prop="amount"
                           label="Total price"
-                          width="120"
+                          width="110"
                         >
                           <template slot-scope="scope">
                             <el-input
@@ -1133,7 +1133,7 @@
                             </el-input>
                           </template>
                         </el-table-column>
-                        <el-table-column prop="note" label="Note" width="120">
+                        <el-table-column prop="note" label="Note" width="110">
                           <template slot-scope="scope">
                             <el-input
                               autocomplete="off"
@@ -1503,7 +1503,7 @@
                             <el-table-column
                               prop="Name"
                               label="Item code"
-                              width="180"
+                              width="150"
                               fixed
                             >
                               <template slot-scope="scope">
@@ -1550,7 +1550,7 @@
                             <el-table-column
                               prop="Name"
                               label="item description"
-                              width="280"
+                              width="240"
                               fixed
                             >
                               <template slot-scope="scope">
@@ -1597,7 +1597,7 @@
                             <el-table-column
                               prop="vendor"
                               label="Vendor"
-                              width="180"
+                              width="120"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1613,7 +1613,7 @@
                             <el-table-column
                               prop="onHandPrice"
                               label="OH price"
-                              width="120"
+                              width="100"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1635,7 +1635,7 @@
                             <el-table-column
                               prop="onHandQuantity"
                               label="OH Qty"
-                              width="120"
+                              width="100"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1704,7 +1704,7 @@
                             <el-table-column
                               prop="discount1"
                               label="Disc1%"
-                              width="120"
+                              width="70"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1720,7 +1720,7 @@
                             <el-table-column
                               prop="discount2"
                               label="Disc2%"
-                              width="120"
+                              width="70"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1735,7 +1735,7 @@
                             <el-table-column
                               prop="costType"
                               label="Cost type "
-                              width="120"
+                              width="110"
                             >
                               <template slot-scope="scope">
                                 <el-select
@@ -1758,7 +1758,7 @@
                             <el-table-column
                               prop="shipment"
                               label="S&C%"
-                              width="120"
+                              width="70"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1804,7 +1804,7 @@
                             <el-table-column
                               prop="foc"
                               label="Discount"
-                              width="120"
+                              width="100"
                             >
                               <template slot-scope="scope">
                                 <label class="form-checkbox pb-1"></label>
@@ -1820,7 +1820,7 @@
                             <el-table-column
                               prop="foC_Value"
                               label="Disc %"
-                              width="150"
+                              width="70"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1836,7 +1836,7 @@
                             <el-table-column
                               prop="grossMargin"
                               label="GM%"
-                              width="120"
+                              width="70"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1856,7 +1856,7 @@
                             <el-table-column
                               prop="unitPrice"
                               label="Unit price"
-                              width="120"
+                              width="100"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1883,7 +1883,7 @@
                             <el-table-column
                               prop="Quantity"
                               label="Quantity"
-                              width="120"
+                              width="100"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1898,7 +1898,7 @@
                             <el-table-column
                               prop="amount"
                               label="Total price"
-                              width="120"
+                              width="110"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -1952,7 +1952,7 @@
                             <el-table-column
                               prop="note"
                               label="Note"
-                              width="120"
+                              width="110"
                             >
                               <template slot-scope="scope">
                                 <el-input
@@ -2347,7 +2347,7 @@
                               <el-table-column
                                 prop="Name"
                                 label="Item code"
-                                width="180"
+                                width="150"
                                 fixed
                               >
                                 <template slot-scope="scope">
@@ -2394,7 +2394,7 @@
                               <el-table-column
                                 prop="Name"
                                 label="item description"
-                                width="280"
+                                width="240"
                                 fixed
                               >
                                 <template slot-scope="scope">
@@ -2443,7 +2443,7 @@
                               <el-table-column
                                 prop="vendor"
                                 label="Vendor"
-                                width="180"
+                                width="120"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2459,7 +2459,7 @@
                               <el-table-column
                                 prop="onHandPrice"
                                 label="OH price"
-                                width="120"
+                                width="100"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2481,7 +2481,7 @@
                               <el-table-column
                                 prop="onHandQuantity"
                                 label="OH Qty"
-                                width="120"
+                                width="100"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2552,7 +2552,7 @@
                               <el-table-column
                                 prop="discount1"
                                 label="Disc1%"
-                                width="120"
+                                width="70"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2570,7 +2570,7 @@
                               <el-table-column
                                 prop="discount2"
                                 label="Disc2%"
-                                width="120"
+                                width="70"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2588,7 +2588,7 @@
                               <el-table-column
                                 prop="costType"
                                 label="Cost type "
-                                width="120"
+                                width="110"
                               >
                                 <template slot-scope="scope">
                                   <el-select
@@ -2611,7 +2611,7 @@
                               <el-table-column
                                 prop="shipment"
                                 label="S&C%"
-                                width="120"
+                                width="70"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2657,7 +2657,7 @@
                               <el-table-column
                                 prop="foc"
                                 label="Discount"
-                                width="120"
+                                width="100"
                               >
                                 <template slot-scope="scope">
                                   <label class="form-checkbox pb-1"></label>
@@ -2673,7 +2673,7 @@
                               <el-table-column
                                 prop="foC_Value"
                                 label="Disc %"
-                                width="150"
+                                width="70"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2691,7 +2691,7 @@
                               <el-table-column
                                 prop="grossMargin"
                                 label="GM%"
-                                width="120"
+                                width="70"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2711,7 +2711,7 @@
                               <el-table-column
                                 prop="unitPrice"
                                 label="Unit price"
-                                width="120"
+                                width="100"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2738,7 +2738,7 @@
                               <el-table-column
                                 prop="Quantity"
                                 label="Quantity"
-                                width="120"
+                                width="100"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2755,7 +2755,7 @@
                               <el-table-column
                                 prop="amount"
                                 label="Total price"
-                                width="120"
+                                width="110"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -2809,7 +2809,7 @@
                               <el-table-column
                                 prop="note"
                                 label="Note"
-                                width="120"
+                                width="110"
                               >
                                 <template slot-scope="scope">
                                   <el-input
@@ -3195,7 +3195,7 @@
                                   <el-table-column
                                     prop="Name"
                                     label="Item code"
-                                    width="180"
+                                    width="150"
                                     fixed
                                   >
                                     <template slot-scope="scope">
@@ -3245,7 +3245,7 @@
                                   <el-table-column
                                     prop="Name"
                                     label="item description"
-                                    width="280"
+                                    width="240"
                                     fixed
                                   >
                                     <template slot-scope="scope">
@@ -3298,7 +3298,7 @@
                                   <el-table-column
                                     prop="vendor"
                                     label="Vendor"
-                                    width="180"
+                                    width="120"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3314,7 +3314,7 @@
                                   <el-table-column
                                     prop="onHandPrice"
                                     label="OH price"
-                                    width="120"
+                                    width="100"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3336,7 +3336,7 @@
                                   <el-table-column
                                     prop="onHandQuantity"
                                     label="OH Qty"
-                                    width="120"
+                                    width="100"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3411,7 +3411,7 @@
                                   <el-table-column
                                     prop="discount1"
                                     label="Disc1%"
-                                    width="120"
+                                    width="70"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3429,7 +3429,7 @@
                                   <el-table-column
                                     prop="discount2"
                                     label="Disc2%"
-                                    width="120"
+                                    width="70"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3446,7 +3446,7 @@
                                   <el-table-column
                                     prop="costType"
                                     label="Cost type "
-                                    width="120"
+                                    width="110"
                                   >
                                     <template slot-scope="scope">
                                       <el-select
@@ -3469,7 +3469,7 @@
                                   <el-table-column
                                     prop="shipment"
                                     label="S&C%"
-                                    width="120"
+                                    width="70"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3519,7 +3519,7 @@
                                   <el-table-column
                                     prop="foc"
                                     label="Discount"
-                                    width="120"
+                                    width="100"
                                   >
                                     <template slot-scope="scope">
                                       <label class="form-checkbox pb-1"></label>
@@ -3535,7 +3535,7 @@
                                   <el-table-column
                                     prop="foC_Value"
                                     label="Disc %"
-                                    width="150"
+                                    width="70"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3553,7 +3553,7 @@
                                   <el-table-column
                                     prop="grossMargin"
                                     label="GM%"
-                                    width="120"
+                                    width="70"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3573,7 +3573,7 @@
                                   <el-table-column
                                     prop="unitPrice"
                                     label="Unit price"
-                                    width="120"
+                                    width="100"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3604,7 +3604,7 @@
                                   <el-table-column
                                     prop="Quantity"
                                     label="Quantity"
-                                    width="120"
+                                    width="100"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3621,7 +3621,7 @@
                                   <el-table-column
                                     prop="amount"
                                     label="Total price"
-                                    width="120"
+                                    width="110"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
@@ -3683,7 +3683,7 @@
                                   <el-table-column
                                     prop="note"
                                     label="Note"
-                                    width="120"
+                                    width="110"
                                   >
                                     <template slot-scope="scope">
                                       <el-input
