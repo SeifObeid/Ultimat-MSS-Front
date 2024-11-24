@@ -378,7 +378,7 @@
                         <el-table-column
                           prop="Name"
                           label="MSS Name"
-                          width="280"
+                          width="240"
                           fixed
                         >
                           <template slot-scope="scope">
@@ -2866,7 +2866,7 @@
                                   <el-table-column
                                     prop="Name"
                                     label="MSS Name"
-                                    width="280"
+                                    width="240"
                                     fixed
                                   >
                                     <template slot-scope="scope">
