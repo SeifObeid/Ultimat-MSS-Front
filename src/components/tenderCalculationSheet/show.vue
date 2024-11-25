@@ -15,6 +15,24 @@
         Award
       </button>
 
+      <router-link
+        v-if="
+          BasicInfoObj.status == $store.getters.getSheetStatus.Approved &&
+          checkPriceActions('Insert') &&
+          BasicInfoObj.isFinalVersion != false &&
+          BasicInfoObj.hasPriceQuotation != true
+        "
+        title="Create price quotation"
+        class="btn btn-success"
+        :to="{
+          name: 'newPriceQuotation',
+          params: { CalSheetId: BasicInfoObj.id, quoteID: -1 ,CalSheetType:2 },
+        }"
+      >
+        <i class="fa fa-edit"></i>
+        Create price quotation
+      </router-link>
+
  <!-- v-if="BasicInfoObj.status == 4 && checkPriceActions('Insert') && BasicInfoObj.isFinalVersion != false && BasicInfoObj.hasPriceQuotation != true"-->
       <!-- <router-link
         v-if="BasicInfoObj.status == 4 && checkPriceActions('Insert') && BasicInfoObj.isFinalVersion != false && BasicInfoObj.hasPriceQuotation != true"

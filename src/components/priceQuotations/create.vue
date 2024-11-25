@@ -33,25 +33,55 @@
                     $t("QuotationReference")
                   }}</label>
                   <label class="required"> *</label>
-                  <el-select
-                    v-if="!CalSheetId"
-                    v-model="formdata.calculationSheetId"
-                    name="calculationSheet"
-                    clearable
-                    filterable
-                    v-validate="'required'"
-                    data-vv-scope="priceQouteValidation"
-                    :placeholder="$t('Select')"
-                    @change="selectCalculationSheet()"
-                  >
-                    <el-option
-                      v-for="option in calculationSheetList"
-                      v-bind:value="option.id"
-                      v-bind:label="option.tenderNumber"
-                      v-bind:key="option.id"
-                    ></el-option>
-                  </el-select>
+                      <!-- <el-select
+                          v-if="!CalSheetId"
+                          v-model="formdata.calculationSheetId"
+                          name="calculationSheet"
+                          clearable
+                          filterable
+                          v-validate="'required'"
+                          data-vv-scope="priceQouteValidation"
+                          :placeholder="$t('Select')"
+                          @change="selectCalculationSheet()"
+                        >
+                          <el-option-group
+                            v-for="group in groupedCalculationSheets"
+                            :key="group.type"
+                            :label="getCalculationSheetTypeLabel(group.type)"
+                          >
+                            <el-option
+                              v-for="option in group.items"
+                            :key="option.id"
+                            :value="option.id"
+                            :label="option.tenderNumber"
+                          ></el-option>
+                        </el-option-group>
+                      </el-select> -->
 
+                      <el-select
+                          v-if="!CalSheetId"
+                          v-model="formdata.selectedCalculationSheet"
+                          name="calculationSheet"
+                          clearable
+                          filterable
+                          v-validate="'required'"
+                          data-vv-scope="priceQouteValidation"
+                          :placeholder="$t('Select')"
+                          @change="selectCalculationSheet"
+                        >
+                          <el-option-group
+                            v-for="group in groupedCalculationSheets"
+                            :key="group.type"
+                            :label="getCalculationSheetTypeLabel(group.type)"
+                          >
+                            <el-option
+                              v-for="option in group.items"
+                              :key="`${group.type}-${option.id}`"
+                              :value="`${option.calculationSheetType}-${option.id}`"
+                              :label="option.tenderNumber"
+                            ></el-option>
+                          </el-option-group>
+                        </el-select>
                   <input
                     v-if="CalSheetId && !qouteID"
                     type="text"
@@ -1613,6 +1643,7 @@ export default {
         salesPerson: "",
         calculationSheetMainGroup: [],
         calculationSheetType: "",
+        selectedCalculationSheet:"",
       },
       customerName: "",
       qouteID: this.$route.params.quoteID,
@@ -1620,6 +1651,7 @@ export default {
         ? this.$store.getters.serverURI
         : "",
       CalSheetId: this.$route.params.CalSheetId,
+      CalSheetType: this.$route.params.CalSheetType,
     };
   },
   mounted() {},
@@ -1634,13 +1666,51 @@ export default {
       this.fetchPriceQuotationData(this.qouteID);
     }
 
-    if (this.CalSheetId && this.qouteID == -1) {
+    if ( this.qouteID == -1 && this.CalSheetId && (this.CalSheetType ==1 ||this.CalSheetType ==2 || this.CalSheetType ==3 )) {
       this.qouteID = null;
       this.formdata.calculationSheetId = this.CalSheetId;
+      this.formdata.calculationSheetType = this.CalSheetType;
       this.selectCalculationSheet();
     }
   },
+
+  computed: {
+    // Group calculation sheets by type
+    groupedCalculationSheets() {
+      const grouped = {};
+      this.calculationSheetList.forEach(sheet => {
+        if (!grouped[sheet.calculationSheetType]) {
+          grouped[sheet.calculationSheetType] = [];
+        }
+        grouped[sheet.calculationSheetType].push(sheet);
+      });
+      return Object.keys(grouped).map(type => ({
+        type: parseInt(type),
+        items: grouped[type]
+      }));
+    }
+  },
   methods: {
+
+
+
+
+
+
+
+    getCalculationSheetTypeLabel(type) {
+      const labels = {
+        1: "Medical",
+        2: "Tender",
+        3: "Lab"
+      };
+      return labels[type] || `Type ${type}`;
+    },
+
+
+
+
+
     toUSD(value) {
       if (value) {
         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1649,12 +1719,33 @@ export default {
       }
     },
     selectCalculationSheet() {
-      const selectedCalSheet = this.calculationSheetList.find(
-        (x) => x.id == this.formdata.calculationSheetId
-      );
+      if(this.formdata.selectedCalculationSheet){
+        const [type, id] = this.formdata.selectedCalculationSheet.split("-"); // Split the composite string
 
-      this.formdata.calculationSheetType =
-        selectedCalSheet.calculationSheetType;
+        this.formdata.calculationSheetId =id;
+        this.formdata.calculationSheetType =type;
+        console.log( [type, id]);
+      }
+      else if( !this.formdata.selectedCalculationSheet && this.formdata.calculationSheetId && this.formdata.calculationSheetType ){
+        this.formdata.selectedCalculationSheet = this.formdata.calculationSheetType+ '-'+this.formdata.calculationSheetId;
+      }
+
+      // let  selectedCalSheet ;
+      // if (this.formdata.calculationSheetType){
+      //   selectedCalSheet=  this.calculationSheetList.find(
+      //   (x) => x.id == this.formdata.calculationSheetId &&   x.calculationSheetType == this.formdata.calculationSheetType
+      // );
+      // }else{
+      //   selectedCalSheet=  this.calculationSheetList.find(
+      //   (x) => x.id == this.formdata.calculationSheetId
+      // );
+      // }
+     
+      // let selectedCalSheet=  this.calculationSheetList.find(
+      //   (x) => x.id == this.formdata.calculationSheetId &&   x.calculationSheetType == this.formdata.calculationSheetType
+      // );
+
+
       this.fullscreenLoading = true;
 
       var urlStr =
@@ -1747,6 +1838,8 @@ export default {
             });
           }
         );
+
+
     },
     save: function () {
       this.$validator.validateAll("priceQouteValidation").then((result) => {
@@ -1897,6 +1990,7 @@ export default {
       document.getElementById("fileInputMulti").value = "";
     },
     fetchPriceQuotationData(priceQuoteID) {
+      if(!priceQuoteID) return;
       this.fullscreenLoading = true;
       var urlStr =
         this.$store.getters.serverURI + "api/PriceQuotation/" + priceQuoteID;
@@ -1928,8 +2022,7 @@ export default {
               this.formdata.deliveryTerms = data.body.deliveryTerms;
               this.formdata.calculationSheetMainGroup =
                 data.body.calculationSheetMainGroup;
-              this.formdata.calculationSheetType =
-                data.body.calculationSheetType;
+              this.formdata.calculationSheetType =  data.body.calculationSheetType;
 
               if (!this.CalSheetId) {
                 this.selectCalculationSheet();

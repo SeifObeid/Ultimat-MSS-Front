@@ -1145,7 +1145,43 @@
                         </el-table-column>
                       </el-table>
                     </div>
-                    <b-row class="mt-1">
+                    <b-row class="m-3">
+                 
+                      <b-col lg="2"
+                        >{{ $t("margin%") }}
+                        {{
+                          getMargin(
+                            CalcGroup.totalMargin,
+                            CalcGroup.totalAmount
+                          )
+                        }}%
+                      </b-col>
+                      <b-col lg="2"
+                        >{{ $t("S&C") }}
+                        {{
+                          getSC(CalcGroup.totalCost, CalcGroup.totalCostRaw)
+                        }}%
+                      </b-col>
+
+                      <b-col lg="2"
+                        >{{ $t("TotalLandedCost") }}
+                        {{ CalcGroup.totalCost | toUSD }}
+                        <strong>{{ calculationSheetCode }}</strong></b-col
+                      >
+                      <b-col lg="2"
+                        >{{ $t("TotalMargin") }}
+                        {{ CalcGroup.totalMargin | toUSD }}
+                        <strong>{{ calculationSheetCode }}</strong></b-col
+                      >
+                      <b-col lg="2"
+                        >{{ $t("TotalAmount") }}
+                        {{ CalcGroup.totalAmount | toUSD }}
+                        <strong>{{ calculationSheetCode }}</strong></b-col
+                      >
+                 
+                    
+                    </b-row>
+                    <b-row>
                       <b-col lg="6">
                         <!-- <el-button
                                             v-if=" CalcGroup.calculationSheetAlternativeGroup.length > 0 "
@@ -1183,37 +1219,6 @@
                             $t("BuildCalculationSheetForAlternative")
                           }}</el-button
                         >
-                      </b-col>
-                      <b-col lg="2"
-                        >{{ $t("TotalLandedCost") }}
-                        {{ CalcGroup.totalCost | toUSD }}
-                        <strong>{{ calculationSheetCode }}</strong></b-col
-                      >
-                      <b-col lg="2"
-                        >{{ $t("TotalMargin") }}
-                        {{ CalcGroup.totalMargin | toUSD }}
-                        <strong>{{ calculationSheetCode }}</strong></b-col
-                      >
-                      <b-col lg="2"
-                        >{{ $t("TotalAmount") }}
-                        {{ CalcGroup.totalAmount | toUSD }}
-                        <strong>{{ calculationSheetCode }}</strong></b-col
-                      >
-
-                      <b-col lg="2"
-                        >{{ $t("margin%") }}
-                        {{
-                          getMargin(
-                            CalcGroup.totalMargin,
-                            CalcGroup.totalAmount
-                          )
-                        }}%
-                      </b-col>
-                      <b-col lg="2"
-                        >{{ $t("S&C") }}
-                        {{
-                          getSC(CalcGroup.totalCost, CalcGroup.totalCostRaw)
-                        }}%
                       </b-col>
                     </b-row>
                     <b-row>
@@ -1965,16 +1970,31 @@
                             </el-table-column>
                           </el-table>
                         </div>
-                        <b-row class="mt-1">
-                          <b-col lg="5">
-                            <!-- <el-button
-                                                @click="addNewOptionalItem(index)"
-                                                class="btn btn-secondary mt-2 mb-1"
-                                                >
-                                                <span class="fa fa-plus"></span>
-                                                {{$t('Item')}}
-                                                </el-button> -->
+                        <b-row class="m-3">
+                          <b-col lg="2"
+                            >{{ $t("margin%") }}
+                            {{
+                              getMargin(
+                                CalcGroup.calculationSheetOptionalGroup
+                                  .totalMargin,
+                                CalcGroup.calculationSheetOptionalGroup
+                                  .totalAmount
+                              )
+                            }}%
                           </b-col>
+                          <b-col lg="2"
+                            >{{ $t("S&C") }}
+                            {{
+                              getSC(
+                                CalcGroup.calculationSheetOptionalGroup
+                                  .totalCost,
+                                CalcGroup.calculationSheetOptionalGroup
+                                  .totalCostRaw
+                              )
+                            }}%
+                          </b-col>
+
+                       
                           <b-col lg="3"
                             >{{ $t("TotalLandedCost") }}
                             {{
@@ -2001,28 +2021,7 @@
                             <strong>{{ calculationSheetCode }}</strong></b-col
                           >
 
-                          <b-col lg="2"
-                            >{{ $t("margin%") }}
-                            {{
-                              getMargin(
-                                CalcGroup.calculationSheetOptionalGroup
-                                  .totalMargin,
-                                CalcGroup.calculationSheetOptionalGroup
-                                  .totalAmount
-                              )
-                            }}%
-                          </b-col>
-                          <b-col lg="2"
-                            >{{ $t("S&C") }}
-                            {{
-                              getSC(
-                                CalcGroup.calculationSheetOptionalGroup
-                                  .totalCost,
-                                CalcGroup.calculationSheetOptionalGroup
-                                  .totalCostRaw
-                              )
-                            }}%
-                          </b-col>
+                        
                         </b-row>
                       </b-collapse>
                     </b-card>
@@ -2823,7 +2822,46 @@
                             </el-table>
                           </div>
 
-                          <b-row class="mt-1">
+                          <b-row class="m-3">
+                          
+                            <b-col lg="2"
+                              >{{ $t("margin%") }}
+                              {{
+                                getMargin(
+                                  alternativeGroup.totalMargin,
+                                  alternativeGroup.totalAmount
+                                )
+                              }}%
+                            </b-col>
+                            <b-col lg="1"
+                              >{{ $t("S&C") }}
+                              {{
+                                getSC(
+                                  alternativeGroup.totalCost,
+                                  alternativeGroup.totalCostRaw
+                                )
+                              }}%
+                            </b-col>
+
+                            <b-col lg="2"
+                              >{{ $t("TotalLandedCost") }}
+                              {{ alternativeGroup.totalCost | toUSD }}
+                              <strong>{{ calculationSheetCode }}</strong></b-col
+                            >
+                            <b-col lg="2"
+                              >{{ $t("TotalMargin") }}
+                              {{ alternativeGroup.totalMargin | toUSD }}
+                              <strong>{{ calculationSheetCode }}</strong></b-col
+                            >
+                            <b-col lg="2"
+                              >{{ $t("TotalAmount") }}
+                              {{ alternativeGroup.totalAmount | toUSD }}
+                              <strong>{{ calculationSheetCode }}</strong></b-col
+                            >
+                         
+                          
+                          </b-row>
+                          <b-row>
                             <b-col lg="3">
                               <!-- <el-button
                                     @click="addNewAternativeItem(index,alternativeGroupIndex)"
@@ -2847,43 +2885,7 @@
                                 {{ $t("addoptional") }}
                               </el-button>
                             </b-col>
-
-                            <b-col lg="2"
-                              >{{ $t("TotalLandedCost") }}
-                              {{ alternativeGroup.totalCost | toUSD }}
-                              <strong>{{ calculationSheetCode }}</strong></b-col
-                            >
-                            <b-col lg="2"
-                              >{{ $t("TotalMargin") }}
-                              {{ alternativeGroup.totalMargin | toUSD }}
-                              <strong>{{ calculationSheetCode }}</strong></b-col
-                            >
-                            <b-col lg="2"
-                              >{{ $t("TotalAmount") }}
-                              {{ alternativeGroup.totalAmount | toUSD }}
-                              <strong>{{ calculationSheetCode }}</strong></b-col
-                            >
-
-                            <b-col lg="2"
-                              >{{ $t("margin%") }}
-                              {{
-                                getMargin(
-                                  alternativeGroup.totalMargin,
-                                  alternativeGroup.totalAmount
-                                )
-                              }}%
-                            </b-col>
-                            <b-col lg="1"
-                              >{{ $t("S&C") }}
-                              {{
-                                getSC(
-                                  alternativeGroup.totalCost,
-                                  alternativeGroup.totalCostRaw
-                                )
-                              }}%
-                            </b-col>
                           </b-row>
-
                           <b-row
                             class="mt-1"
                             v-if="
@@ -3696,14 +3698,33 @@
                                   </el-table-column>
                                 </el-table>
                               </div>
-                              <b-row class="mt-1">
-                                <b-col lg="5">
-                                  <!-- <el-button
-                                    @click="addNewAlternativeOptionalItem(index,alternativeGroupIndex)"
-                                    class="btn btn-secondary mt-2 mb-1">
-                                    <span class="fa fa-plus"></span>
-                                    {{$t('Item')}}
-                                  </el-button> -->
+                              <b-row class="m-3">
+                                <b-col lg="2"
+                                  >{{ $t("margin%") }}
+                                  {{
+                                    getMargin(
+                                      alternativeGroup
+                                        .calculationSheetAlternativeOptionalGroup
+                                        .totalMargin,
+                                      alternativeGroup
+                                        .calculationSheetAlternativeOptionalGroup
+                                        .totalAmount
+                                    )
+                                  }}%
+                                </b-col>
+
+                                <b-col lg="2"
+                                  >{{ $t("S&C") }}
+                                  {{
+                                    getSC(
+                                      alternativeGroup
+                                        .calculationSheetAlternativeOptionalGroup
+                                        .totalCost,
+                                      alternativeGroup
+                                        .calculationSheetAlternativeOptionalGroup
+                                        .totalCostRaw
+                                    )
+                                  }}%
                                 </b-col>
                                 <b-col lg="3"
                                   >{{ $t("TotalLandedCost") }}
@@ -3738,33 +3759,7 @@
                                     calculationSheetCode
                                   }}</strong></b-col
                                 >
-                                <b-col lg="2"
-                                  >{{ $t("margin%") }}
-                                  {{
-                                    getMargin(
-                                      alternativeGroup
-                                        .calculationSheetAlternativeOptionalGroup
-                                        .totalMargin,
-                                      alternativeGroup
-                                        .calculationSheetAlternativeOptionalGroup
-                                        .totalAmount
-                                    )
-                                  }}%
-                                </b-col>
-
-                                <b-col lg="2"
-                                  >{{ $t("S&C") }}
-                                  {{
-                                    getSC(
-                                      alternativeGroup
-                                        .calculationSheetAlternativeOptionalGroup
-                                        .totalCost,
-                                      alternativeGroup
-                                        .calculationSheetAlternativeOptionalGroup
-                                        .totalCostRaw
-                                    )
-                                  }}%
-                                </b-col>
+                             
                               </b-row>
                             </b-collapse>
                           </b-card>

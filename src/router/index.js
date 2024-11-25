@@ -774,7 +774,7 @@ export const router = new Router({
           },
           children: [
             {
-              path: "priceQuotation/:quoteID?/:CalSheetId?",
+              path: "priceQuotation/:quoteID?/:CalSheetId?/:CalSheetType?",
               name: "newPriceQuotation",
               component: newPriceQuotation,
               meta: {

@@ -31,7 +31,7 @@
         class="btn btn-success"
         :to="{
           name: 'newPriceQuotation',
-          params: { CalSheetId: BasicInfoObj.id, quoteID: -1 },
+          params: { CalSheetId: BasicInfoObj.id, quoteID: -1 ,CalSheetType:1 },
         }"
       >
         <i class="fa fa-edit"></i>
