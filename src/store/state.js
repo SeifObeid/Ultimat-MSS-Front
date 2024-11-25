@@ -2,7 +2,7 @@ export default {
   callingAPI: false,
   searching: '',
   //serverURI: 'http://10.110.1.136:8080',
-  serverURI: 'http://localhost/MSS/',
+  serverURI: 'http://localhost/MSS/', 
   // serverURI: 'https://tms.mss.ps/',
   // serverURI: 'http://192.168.0.93/MSS/',
   // serverURI: 'http://192.168.5.34:8081/mss_test/',
