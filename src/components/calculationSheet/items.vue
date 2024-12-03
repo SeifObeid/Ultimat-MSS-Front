@@ -521,6 +521,32 @@
                             ></el-input>
                           </div>
                         </div>
+
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <div class="form-group">
+                            <label class="col-form-label">{{
+                              $t("CostType")
+                            }}</label>
+                            <el-select
+                              v-model="CalcGroup.bulkObj.costType"
+                              clearable
+                              filterable
+                              name="CostType"
+                              class="full-width padding-3"
+                              size="mini"
+                            >
+                              <el-option
+                                v-for="option in costTypeList"
+                                :value="option.id"
+                                :label="option.name"
+                                :key="option.id"
+                              ></el-option>
+                            </el-select>
+                          </div>
+                        </div>
+
+
+
                         <div class="col-md-2 col-lg-2 col-xl-2">
                           <div class="form-group">
                             <label class="col-form-label">{{
@@ -533,6 +559,7 @@
                             ></el-input>
                           </div>
                         </div>
+
                         <div class="col-md-2 col-lg-2 col-xl-2">
                           <div class="form-group">
                             <label class="col-form-label">{{
@@ -557,28 +584,7 @@
                             ></el-input>
                           </div>
                         </div>
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                          <div class="form-group">
-                            <label class="col-form-label">{{
-                              $t("CostType")
-                            }}</label>
-                            <el-select
-                              v-model="CalcGroup.bulkObj.costType"
-                              clearable
-                              filterable
-                              name="CostType"
-                              class="full-width padding-3"
-                              size="mini"
-                            >
-                              <el-option
-                                v-for="option in costTypeList"
-                                :value="option.id"
-                                :label="option.name"
-                                :key="option.id"
-                              ></el-option>
-                            </el-select>
-                          </div>
-                        </div>
+                      
 
                         <div class="col-md-2 col-lg-2 col-xl-2">
                           <div class="form-group">
@@ -960,6 +966,21 @@
                           </template>
                         </el-table-column>
                         <el-table-column
+                          prop="shipmentCost"
+                          label="S&C Value"
+                          width="100"
+                        >
+                          <template slot-scope="scope">
+                            <el-input
+                              v-model="scope.row.shipmentCost"
+                              size="mini"
+                              autocomplete="off"
+                              disabled
+                            >
+                            </el-input>
+                          </template>
+                        </el-table-column>
+                        <el-table-column
                           prop="landedCost"
                           label="Landed cost"
                           width="120"
@@ -1159,11 +1180,11 @@
                       <b-col lg="2"
                         >{{ $t("S&C") }}
                         {{
-                          getSC(CalcGroup.totalCost, CalcGroup.totalCostRaw)
-                        }}%
+                          getTotalSC(CalcGroup.calculationSheetItem)
+                        }}
                       </b-col>
 
-                      <b-col lg="2"
+                      <b-col lg="3"
                         >{{ $t("TotalLandedCost") }}
                         {{ CalcGroup.totalCost | toUSD }}
                         <strong>{{ calculationSheetCode }}</strong></b-col
@@ -1173,7 +1194,7 @@
                         {{ CalcGroup.totalMargin | toUSD }}
                         <strong>{{ calculationSheetCode }}</strong></b-col
                       >
-                      <b-col lg="2"
+                      <b-col lg="3"
                         >{{ $t("TotalAmount") }}
                         {{ CalcGroup.totalAmount | toUSD }}
                         <strong>{{ calculationSheetCode }}</strong></b-col
@@ -1318,6 +1339,34 @@
                                 ></el-input>
                               </div>
                             </div>
+
+
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                              <div class="form-group">
+                                <label class="col-form-label">{{
+                                  $t("CostType")
+                                }}</label>
+                                <el-select
+                                  v-model="
+                                    CalcGroup.calculationSheetOptionalGroup
+                                      .bulkObj.costType
+                                  "
+                                  clearable
+                                  filterable
+                                  name="CostType"
+                                  class="full-width padding-3"
+                                  size="mini"
+                                >
+                                  <el-option
+                                    v-for="option in costTypeList"
+                                    :value="option.id"
+                                    :label="option.name"
+                                    :key="option.id"
+                                  ></el-option>
+                                </el-select>
+                              </div>
+                            </div>
+
                             <div class="col-md-2 col-lg-2 col-xl-2">
                               <div class="form-group">
                                 <label class="col-form-label">{{
@@ -1363,31 +1412,7 @@
                                 ></el-input>
                               </div>
                             </div>
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                              <div class="form-group">
-                                <label class="col-form-label">{{
-                                  $t("CostType")
-                                }}</label>
-                                <el-select
-                                  v-model="
-                                    CalcGroup.calculationSheetOptionalGroup
-                                      .bulkObj.costType
-                                  "
-                                  clearable
-                                  filterable
-                                  name="CostType"
-                                  class="full-width padding-3"
-                                  size="mini"
-                                >
-                                  <el-option
-                                    v-for="option in costTypeList"
-                                    :value="option.id"
-                                    :label="option.name"
-                                    :key="option.id"
-                                  ></el-option>
-                                </el-select>
-                              </div>
-                            </div>
+                      
                             <div class="col-md-2 col-lg-2 col-xl-2">
                               <div class="form-group">
                                 <button
@@ -1760,6 +1785,8 @@
                                 </el-select>
                               </template>
                             </el-table-column>
+
+
                             <el-table-column
                               prop="shipment"
                               label="S&C%"
@@ -1775,6 +1802,23 @@
                                   v-model="scope.row.shipment"
                                   size="mini"
                                   autocomplete="off"
+                                >
+                                </el-input>
+                              </template>
+                            </el-table-column>
+
+
+                            <el-table-column
+                              prop="shipmentCost"
+                              label="S&C Value"
+                              width="100"
+                            >
+                              <template slot-scope="scope">
+                                <el-input
+                                  v-model="scope.row.shipmentCost"
+                                  size="mini"
+                                  autocomplete="off"
+                                  disabled
                                 >
                                 </el-input>
                               </template>
@@ -1985,13 +2029,11 @@
                           <b-col lg="2"
                             >{{ $t("S&C") }}
                             {{
-                              getSC(
-                                CalcGroup.calculationSheetOptionalGroup
-                                  .totalCost,
-                                CalcGroup.calculationSheetOptionalGroup
-                                  .totalCostRaw
-                              )
-                            }}%
+                               getTotalSC(CalcGroup.calculationSheetOptionalGroup.calculationSheetItem)
+
+                            }}
+                            
+                            
                           </b-col>
 
                        
@@ -2012,7 +2054,7 @@
                             <strong>{{ calculationSheetCode }}</strong></b-col
                           >
 
-                          <b-col lg="2"
+                          <b-col lg="3"
                             >{{ $t("TotalAmount") }}
                             {{
                               CalcGroup.calculationSheetOptionalGroup
@@ -2144,6 +2186,32 @@
                                 ></el-input>
                               </div>
                             </div>
+
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                              <div class="form-group">
+                                <label class="col-form-label">{{
+                                  $t("CostType")
+                                }}</label>
+                                <el-select
+                                  v-model="alternativeGroup.bulkObj.costType"
+                                  clearable
+                                  filterable
+                                  name="CostType"
+                                  class="full-width padding-3"
+                                  size="mini"
+                                >
+                                  <el-option
+                                    v-for="option in costTypeList"
+                                    :value="option.id"
+                                    :label="option.name"
+                                    :key="option.id"
+                                  ></el-option>
+                                </el-select>
+                              </div>
+                            </div>
+
+
+
                             <div class="col-md-2 col-lg-2 col-xl-2">
                               <div class="form-group">
                                 <label class="col-form-label">{{
@@ -2180,28 +2248,7 @@
                                 ></el-input>
                               </div>
                             </div>
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                              <div class="form-group">
-                                <label class="col-form-label">{{
-                                  $t("CostType")
-                                }}</label>
-                                <el-select
-                                  v-model="alternativeGroup.bulkObj.costType"
-                                  clearable
-                                  filterable
-                                  name="CostType"
-                                  class="full-width padding-3"
-                                  size="mini"
-                                >
-                                  <el-option
-                                    v-for="option in costTypeList"
-                                    :value="option.id"
-                                    :label="option.name"
-                                    :key="option.id"
-                                  ></el-option>
-                                </el-select>
-                              </div>
-                            </div>
+                         
                             <div class="col-md-2 col-lg-2 col-xl-2">
                               <div class="form-group">
                                 <button
@@ -2607,6 +2654,8 @@
                                   </el-select>
                                 </template>
                               </el-table-column>
+
+
                               <el-table-column
                                 prop="shipment"
                                 label="S&C%"
@@ -2626,6 +2675,26 @@
                                   </el-input>
                                 </template>
                               </el-table-column>
+
+
+                              <el-table-column
+                                prop="shipmentCost"
+                                label="S&C Value"
+                                width="100"
+                              >
+                                <template slot-scope="scope">
+                                  <el-input
+                                    v-model="scope.row.shipmentCost"
+                                    size="mini"
+                                    autocomplete="off"
+                                    disabled
+                                  >
+                                  </el-input>
+                                </template>
+                              </el-table-column>
+
+                      
+
                               <el-table-column
                                 prop="landedCost"
                                 label="Landed cost"
@@ -2833,17 +2902,16 @@
                                 )
                               }}%
                             </b-col>
-                            <b-col lg="1"
+                            <b-col lg="2"
                               >{{ $t("S&C") }}
                               {{
-                                getSC(
-                                  alternativeGroup.totalCost,
-                                  alternativeGroup.totalCostRaw
-                                )
-                              }}%
-                            </b-col>
+                               getTotalSC(alternativeGroup.calculationSheetItem)
 
-                            <b-col lg="2"
+                              }}
+                            </b-col>
+                            
+                            
+                            <b-col lg="3"
                               >{{ $t("TotalLandedCost") }}
                               {{ alternativeGroup.totalCost | toUSD }}
                               <strong>{{ calculationSheetCode }}</strong></b-col
@@ -2853,7 +2921,7 @@
                               {{ alternativeGroup.totalMargin | toUSD }}
                               <strong>{{ calculationSheetCode }}</strong></b-col
                             >
-                            <b-col lg="2"
+                            <b-col lg="3"
                               >{{ $t("TotalAmount") }}
                               {{ alternativeGroup.totalAmount | toUSD }}
                               <strong>{{ calculationSheetCode }}</strong></b-col
@@ -2984,6 +3052,36 @@
                                       ></el-input>
                                     </div>
                                   </div>
+
+
+                                  <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <div class="form-group">
+                                      <label class="col-form-label">{{
+                                        $t("CostType")
+                                      }}</label>
+                                      <el-select
+                                        v-model="
+                                          alternativeGroup
+                                            .calculationSheetAlternativeOptionalGroup
+                                            .bulkObj.costType
+                                        "
+                                        clearable
+                                        filterable
+                                        name="CostType"
+                                        class="full-width padding-3"
+                                        size="mini"
+                                      >
+                                        <el-option
+                                          v-for="option in costTypeList"
+                                          :value="option.id"
+                                          :label="option.name"
+                                          :key="option.id"
+                                        ></el-option>
+                                      </el-select>
+                                    </div>
+                                  </div>
+
+
                                   <div class="col-md-2 col-lg-2 col-xl-2">
                                     <div class="form-group">
                                       <label class="col-form-label">{{
@@ -3032,32 +3130,7 @@
                                       ></el-input>
                                     </div>
                                   </div>
-                                  <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <div class="form-group">
-                                      <label class="col-form-label">{{
-                                        $t("CostType")
-                                      }}</label>
-                                      <el-select
-                                        v-model="
-                                          alternativeGroup
-                                            .calculationSheetAlternativeOptionalGroup
-                                            .bulkObj.costType
-                                        "
-                                        clearable
-                                        filterable
-                                        name="CostType"
-                                        class="full-width padding-3"
-                                        size="mini"
-                                      >
-                                        <el-option
-                                          v-for="option in costTypeList"
-                                          :value="option.id"
-                                          :label="option.name"
-                                          :key="option.id"
-                                        ></el-option>
-                                      </el-select>
-                                    </div>
-                                  </div>
+                                 
                                   <div class="col-md-2 col-lg-2 col-xl-2">
                                     <div class="form-group">
                                       <button
@@ -3468,6 +3541,8 @@
                                       </el-select>
                                     </template>
                                   </el-table-column>
+
+
                                   <el-table-column
                                     prop="shipment"
                                     label="S&C%"
@@ -3487,6 +3562,26 @@
                                       </el-input>
                                     </template>
                                   </el-table-column>
+
+
+
+                                  <el-table-column
+                                    prop="shipmentCost"
+                                    label="S&C Value"
+                                    width="100"
+                                  >
+                                    <template slot-scope="scope">
+                                      <el-input
+                                        v-model="scope.row.shipmentCost"
+                                        size="mini"
+                                        autocomplete="off"
+                                        disabled
+                                      >
+                                      </el-input>
+                                    </template>
+                                  </el-table-column>
+
+
                                   <el-table-column
                                     prop="landedCost"
                                     label="Landed cost"
@@ -3712,19 +3807,14 @@
                                     )
                                   }}%
                                 </b-col>
-
+ 
                                 <b-col lg="2"
                                   >{{ $t("S&C") }}
                                   {{
-                                    getSC(
-                                      alternativeGroup
-                                        .calculationSheetAlternativeOptionalGroup
-                                        .totalCost,
-                                      alternativeGroup
-                                        .calculationSheetAlternativeOptionalGroup
-                                        .totalCostRaw
-                                    )
-                                  }}%
+                                   getTotalSC( alternativeGroup.calculationSheetAlternativeOptionalGroup.calculationSheetItem )
+
+                                  }}
+                                  
                                 </b-col>
                                 <b-col lg="3"
                                   >{{ $t("TotalLandedCost") }}
@@ -3748,7 +3838,7 @@
                                     calculationSheetCode
                                   }}</strong></b-col
                                 >
-                                <b-col lg="2"
+                                <b-col lg="3"
                                   >{{ $t("TotalAmount") }}
                                   {{
                                     alternativeGroup
@@ -6048,6 +6138,7 @@ export default {
 
       if (rowItem.shipment != "") {
         shipment = rowItem.shipment;
+
       }
 
       if (rowItem.grossMargin != "") {
@@ -6093,15 +6184,15 @@ export default {
       // } else if (parseFloat(discount1) != 0 && parseFloat(discount2) != 0) {
       //     rowItem.landedCost = parseFloat(parseFloat(costWithdiscount) * ((1 + parseFloat(shipment) / 100))).toFixed(3).slice(0,-1);
       // } else if (parseFloat(discount1) == 0 && parseFloat(discount2) == 0) {
-      rowItem.landedCost = parseFloat(
-        parseFloat(cost) *
-          currencyConversion *
-          (1 + parseFloat(shipment) / 100) *
-          (1 - parseFloat(discount1) / 100) *
-          (1 - parseFloat(discount2) / 100)
-      ).toFixed(2); //.slice(0,-1);
-      // }
 
+      
+      rowItem.landedCost = parseFloat(  parseFloat(cost) * currencyConversion * (1 + parseFloat(shipment) / 100) * (1 - parseFloat(discount1) / 100) * (1 - parseFloat(discount2) / 100)  ).toFixed(2); //.slice(0,-1);
+      // }
+      if (rowItem.shipment && rowItem.shipment !="") {
+        rowItem.shipmentCost = ((rowItem.landedCost/(1 + parseFloat(shipment) / 100))*(rowItem.shipment/100 )).toFixed(1)
+      }else{
+        rowItem.shipmentCost = 0;
+      }
       // }
 
       // if (rowItem.cost && rowItem.landedCost) {
@@ -7090,10 +7181,18 @@ export default {
         ? 0
         : ((totalMargin / totalAmount) * 100).toFixed(3);
     },
-    getSC(totalLandingCost, totalCost) {
-      return totalCost == 0
-        ? 0
-        : ((totalLandingCost / totalCost) * 100).toFixed(3);
+    getTotalSC(listOfItems) {
+        if (!Array.isArray(listOfItems) || listOfItems.length === 0) {
+            return 0;
+        }
+
+        const result = listOfItems.reduce((acc, item) => {
+            const shipmentCost = item.shipmentCost || 0;
+            const quantity = item.quantity || 0;
+            return acc + (shipmentCost * quantity);
+        }, 0);
+
+        return result.toFixed(3);
     },
     saveDataAction(isPrevious) {
       this.$validator.validateAll().then((result) => {

@@ -234,6 +234,7 @@
   "Discount2": "Discount2 (%)",
   "Currency": "Currency",
   "Shipment": "Shipment (%)",
+  "shipmentCost": "S&C Value",
   "LandedCost": "Landed cost",
   "GrossMargin": "Gross margin (%)",
   "UnitPrice": "Unit price",

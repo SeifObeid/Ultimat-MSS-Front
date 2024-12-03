@@ -1332,6 +1332,15 @@
                           label="S&C %"
                           width="70"
                         ></el-table-column>
+
+                        <el-table-column
+                          sortable
+                          prop="shipmentCost"
+                          label="S&C Value"
+                          width="120" >
+                        </el-table-column>
+
+
                         <el-table-column
                           sortable
                           prop="landedCost"
@@ -1385,8 +1394,23 @@
                       </el-table>
                     </div>
                     <b-row class="mt-1">
-                      <b-col lg="6"> </b-col>
                       <b-col lg="2"
+                        >{{ $t("margin%") }}
+                        {{
+                          getMargin(
+                            CalcGroup.totalMargin,
+                            CalcGroup.totalAmount
+                          )
+                        }}%
+                      </b-col>
+                      <b-col lg="2"
+                        >{{ $t("S&C") }}
+                        {{
+                          getTotalSC(CalcGroup.calculationSheetItem)
+                        }}
+                      </b-col>
+
+                      <b-col lg="3"
                         >{{ $t("TotalLandedCost") }}
                         {{ CalcGroup.totalCost | toUSD }}
                         <strong>{{ calculationSheetCode }}</strong></b-col
@@ -1396,7 +1420,7 @@
                         {{ CalcGroup.totalMargin | toUSD }}
                         <strong>{{ calculationSheetCode }}</strong></b-col
                       >
-                      <b-col lg="2"
+                      <b-col lg="3"
                         >{{ $t("TotalAmount") }}
                         {{ CalcGroup.totalAmount | toUSD }}
                         <strong>{{ calculationSheetCode }}</strong></b-col
@@ -1505,6 +1529,12 @@
                             ></el-table-column>
                             <el-table-column
                               sortable
+                              prop="shipmentCost"
+                              label="S&C Value"
+                              width="120" >
+                            </el-table-column>
+                            <el-table-column
+                              sortable
                               prop="landedCost"
                               label="Landed cost"
                               width="120"
@@ -1548,7 +1578,21 @@
                           </el-table>
                         </div>
                         <b-row class="mt-1">
-                          <b-col lg="5"> </b-col>
+
+                          <b-col lg="2"
+                            >{{ $t("margin%") }}
+                            {{  getMargin(
+                                CalcGroup.calculationSheetOptionalGroup
+                                  .totalMargin,
+                                CalcGroup.calculationSheetOptionalGroup
+                                  .totalAmount  )  }}%
+                          </b-col>
+                          <b-col lg="2"
+                            >{{ $t("S&C") }}
+                            {{ getTotalSC(CalcGroup.calculationSheetOptionalGroup.calculationSheetItem) }}
+
+                          </b-col>  
+
                           <b-col lg="3"
                             >{{ $t("TotalLandedCost") }}
                             {{
@@ -1565,7 +1609,7 @@
                             }}
                             <strong>{{ calculationSheetCode }}</strong></b-col
                           >
-                          <b-col lg="2"
+                          <b-col lg="3"
                             >{{ $t("TotalAmount") }}
                             {{
                               CalcGroup.calculationSheetOptionalGroup
@@ -1701,6 +1745,12 @@
                               ></el-table-column>
                               <el-table-column
                                 sortable
+                                prop="shipmentCost"
+                                label="S&C Value"
+                                width="120" >
+                              </el-table-column>
+                              <el-table-column
+                                sortable
                                 prop="landedCost"
                                 label="Landed cost"
                                 width="120"
@@ -1745,7 +1795,27 @@
                               ></el-table-column>
                             </el-table>
                             <b-row class="mt-1">
-                              <b-col lg="5"> </b-col>
+
+                              <b-col lg="2"
+                              >{{ $t("margin%") }}
+                              {{
+                                getMargin(
+                                  alternativeGroup.totalMargin,
+                                  alternativeGroup.totalAmount
+                                )
+                              }}%
+                            </b-col>
+                            <b-col lg="2"
+                              >{{ $t("S&C") }}
+                              {{
+                               getTotalSC(alternativeGroup.calculationSheetItem)
+
+                              }}
+                            </b-col>
+
+
+
+
                               <b-col lg="3"
                                 >{{ $t("TotalLandedCost") }}
                                 {{ alternativeGroup.totalCost | toUSD }}
@@ -1760,7 +1830,7 @@
                                   calculationSheetCode
                                 }}</strong></b-col
                               >
-                              <b-col lg="2"
+                              <b-col lg="3"
                                 >{{ $t("TotalAmount") }}
                                 {{ alternativeGroup.totalAmount | toUSD }}
                                 <strong>{{
@@ -1883,6 +1953,12 @@
                                     ></el-table-column>
                                     <el-table-column
                                       sortable
+                                      prop="shipmentCost"
+                                      label="S&C Value"
+                                      width="120"
+                                    ></el-table-column>
+                                    <el-table-column
+                                      sortable
                                       prop="landedCost"
                                       label="Landed cost"
                                       width="120"
@@ -1926,8 +2002,29 @@
                                   </el-table>
                                 </div>
                                 <b-row class="mt-1">
-                                  <b-col lg="5"> </b-col>
-                                  <b-col lg="3"
+                                  <b-col lg="2"
+                                  >{{ $t("margin%") }}
+                                  {{
+                                    getMargin(
+                                      alternativeGroup
+                                        .calculationSheetAlternativeOptionalGroup
+                                        .totalMargin,
+                                      alternativeGroup
+                                        .calculationSheetAlternativeOptionalGroup
+                                        .totalAmount
+                                    )
+                                  }}%
+                                </b-col>
+ 
+                                <b-col lg="2"
+                                  >{{ $t("S&C") }}
+                                  {{
+                                   getTotalSC( alternativeGroup.calculationSheetAlternativeOptionalGroup.calculationSheetItem )
+
+                                  }}
+                                  
+                                </b-col>                                  
+                                <b-col lg="3"
                                     >{{ $t("TotalLandedCost") }}
                                     {{
                                       alternativeGroup
@@ -1949,7 +2046,7 @@
                                       calculationSheetCode
                                     }}</strong></b-col
                                   >
-                                  <b-col lg="2"
+                                  <b-col lg="3"
                                     >{{ $t("TotalAmount") }}
                                     {{
                                       alternativeGroup
@@ -2367,6 +2464,24 @@ export default {
   },
 
   methods: {
+    getTotalSC(listOfItems) {
+        if (!Array.isArray(listOfItems) || listOfItems.length === 0) {
+            return 0;
+        }
+
+        const result = listOfItems.reduce((acc, item) => {
+            const shipmentCost = item.shipmentCost || 0;
+            const quantity = item.quantity || 0;
+            return acc + (shipmentCost * quantity);
+        }, 0);
+
+        return result.toFixed(3);
+    },
+    getMargin(totalMargin, totalAmount) {
+      return totalAmount == 0
+        ? 0
+        : ((totalMargin / totalAmount) * 100).toFixed(3);
+    },
     fillBasicBankGuaranteeTypes: function () {
       var urlStr =
         this.$store.getters.serverURI +
